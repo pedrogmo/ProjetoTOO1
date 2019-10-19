@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1571509014 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
+	"arvore.h"
+
+1571509205 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
+	"bool.h"
+
+1571509188 c:\users\user\documents\github\projetotoo1\projeto\bool.h
+
+1571509014 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
+	"lista.h"
+	<stdlib.h>
+
+1571509277 c:\users\user\documents\github\projetotoo1\projeto\lista.h
+

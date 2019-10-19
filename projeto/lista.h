@@ -1,10 +1,11 @@
-#ifndef LISTA_H
-#define LISTA_H
+#ifndef LISTA
+#define LISTA
 
 typedef
     struct No
     {
-        void* info;         /*Tipo genérico, ponteiro void*/
+        /*Dado genérico*/
+        void* info;
         struct No* prox;
     } No;
 
@@ -52,4 +53,4 @@ extern void excluir(
 extern void limpar(
     Lista* lista);
 
-#endif /* LISTA_H */
+#endif /*LISTA*/

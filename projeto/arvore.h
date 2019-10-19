@@ -1,11 +1,7 @@
 #ifndef ARVORE
 #define ARVORE
 
-typedef
-    enum
-    {
-        false, true
-    } bool;
+#include "bool.h"
 
 /*struct para guardar caractere e frequência*/
 typedef
@@ -25,4 +21,4 @@ typedef
         struct NoArvore *direita;
     } NoArvore;
 
-#endif /* ARVORE */
+#endif /*ARVORE*/
