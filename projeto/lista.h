@@ -1,56 +1,68 @@
 #ifndef LISTA
 #define LISTA
 
+#include "bool.h"
+
 typedef
     struct No
     {
-        /*Dado genérico*/
-        void* info;
-        struct No* prox;
+        void *info;
+        struct No *prox;
     } No;
 
 typedef
     struct
     {
-        No* inicio, * fim;
+        No *inicio;
+        No *fim;
+        unsigned int quantidade;
     } Lista;
 
 /*Funções que podem ser usadas externamente, públicas*/
 
 extern void inicializar(
-    Lista* lista);
-
-extern void inserir_inicio(
-    Lista* lista,
-    void* info);
-
-extern void inserir_fim(
-    Lista* lista,
-    void* info);
-
-extern void inserir(
-    Lista* lista,
-    void* info,
-    unsigned int pos);
-
-extern void* get(
-    Lista* lista,
-    unsigned int pos);
+    Lista *lista);
 
 extern int quantidade(
+    Lista *lista);
+
+extern bool vazia(
+    Lista *lista);
+
+extern void inserirInicio(
+    Lista *lista,
+    void *info);
+
+extern void inserirFim(
+    Lista *lista,
+    void *info);
+
+extern void inserir(
+    Lista *lista,
+    void *info,
+    unsigned int pos);
+
+extern void *dadoInicio(
     Lista* lista);
 
-extern void excluir_inicio(
+extern void *dadoFim(
     Lista* lista);
 
-extern void excluir_fim(
-    Lista* lista);
+extern void *dadoEm(
+    Lista *lista,
+    unsigned int pos);
+
+extern void excluirInicio(
+    Lista *lista);
+
+extern void excluirFim(
+    Lista *lista);
 
 extern void excluir(
-    Lista* lista,
+    Lista *lista,
     unsigned int pos);
 
 extern void limpar(
-    Lista* lista);
+    Lista *lista);
 
 #endif /*LISTA*/

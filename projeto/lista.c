@@ -6,37 +6,51 @@ Função auxiliar private
 Static: só pode ser usada nesse arquivo
 */
 
-static No* novo_no(
-    void* info,
-    No* prox)
+static No* novoNo(
+    void *info,
+    No *prox)
 {
-    No* ptr_novo = (No*) malloc(sizeof(No));
-    ptr_novo->info = info;
-    ptr_novo->prox = prox;
-    return ptr_novo;
+    No *ptrNovo = (No*) malloc(sizeof(No));
+    ptrNovo->info = info;
+    ptrNovo->prox = prox;
+    return ptrNovo;
 }
 
 void inicializar(
-    Lista* lista) /*Lista por referência*/
+    Lista *lista)
 {
     lista->inicio = NULL;
     lista->fim = NULL;
+    lista->quantidade = 0;
 }
 
-void inserir_inicio(
-    Lista* lista, /*Lista por referência*/
-    void* info)   /*Para guardar o ponteiro genérico*/
+int quantidade(
+    Lista *lista)
 {
-    lista->inicio = novo_no(info, lista->inicio);
+    return lista->quantidade;
+}
+
+bool vazia(
+    Lista *lista)
+{
+    return !lista->inicio;
+}
+
+void inserirInicio(
+    Lista *lista,
+    void *info)
+{
+    lista->inicio = novoNo(info, lista->inicio);
     if (!lista->fim)
         lista->fim = lista->inicio;
+    ++lista->quantidade;
 }
 
-void inserir_fim(
-    Lista* lista,
-    void* info)
+void inserirFim(
+    Lista *lista,
+    void *info)
 {
-    No* novo = novo_no(info, NULL);
+    No *novo = novoNo(info, NULL);
 
     if (lista->fim)
     {
@@ -48,34 +62,52 @@ void inserir_fim(
         lista->fim = novo;
         lista->inicio = lista->fim;
     }
+
+    ++lista->quantidade;
 }
 
 void inserir(
-    Lista* lista,
-    void* info,
+    Lista *lista,
+    void *info,
     unsigned int pos)
 {
-    No* anterior = lista->inicio;
-
     if (pos == 0)
-        inserir_inicio(lista,info);
-    for (; pos > 1; --pos)
+        inserirInicio(lista, info);
+    else
     {
-        if (!anterior->prox)
+        No *anterior = lista->inicio;
+
+        for (; pos > 1; --pos)
         {
-            inserir_fim(lista, info);
-            return;
+            if (!anterior->prox)
+            {
+                inserirFim(lista, info);
+                return;
+            }
+            anterior = anterior->prox;
         }
-        anterior = anterior->prox;
+        anterior->prox = novoNo(info, anterior->prox);
+        ++lista->quantidade;
     }
-    anterior->prox = novo_no(info, anterior->prox);
 }
 
-void* get(
-    Lista* lista,
+void *dadoInicio(
+    Lista *lista)
+{
+    return lista->inicio->info;
+}
+
+void *dadoFim(
+    Lista *lista)
+{
+    return lista->fim->info;
+}
+
+void* dadoEm(
+    Lista *lista,
     unsigned int pos)
 {
-    No* temp = lista->inicio;
+    No *temp = lista->inicio;
 
     for(; pos > 0 && temp;
         --pos)
@@ -85,21 +117,10 @@ void* get(
     return temp->info;
 }
 
-int quantidade(
-    Lista* lista)
+void excluirInicio(
+    Lista *lista)
 {
-    int c = 0;
-    No* cur = lista->inicio;
-
-    for(; cur; cur = cur->prox)
-        ++c;
-    return c;
-}
-
-void excluir_inicio(
-    Lista* lista)
-{
-    No* primeiro = lista->inicio;
+    No *primeiro = lista->inicio;
 
     if (primeiro)
     {
@@ -108,13 +129,15 @@ void excluir_inicio(
             lista->fim = NULL;
         free(primeiro->info);
         free(primeiro);
+
+        --lista->quantidade;
     }
 }
 
-void excluir_fim(
-    Lista* lista)
+void excluirFim(
+    Lista *lista)
 {
-    No* penultimo = lista->inicio;
+    No *penultimo = lista->inicio;
 
     if (lista->inicio)
     {
@@ -135,25 +158,27 @@ void excluir_fim(
             lista->fim = penultimo;
             lista->fim->prox = NULL;
         }
+
+        --lista->quantidade;
     }
 }
 
 void excluir(
-    Lista* lista,
+    Lista *lista,
     unsigned int pos)
 {
-    No* anterior = lista->inicio;
-    No* temp;
-
     if (pos == 0)
-        excluir_inicio(lista);
+        excluirInicio(lista);
     else
     {
+        No *anterior = lista->inicio;
+        No *temp;
+
         for (; pos > 1; --pos)
         {
             if (!anterior->prox)
             {
-                excluir_fim(lista);
+                excluirFim(lista);
                 return;
             }
             anterior = anterior->prox;
@@ -162,12 +187,14 @@ void excluir(
         anterior->prox = anterior->prox->prox;
         free(temp->info);
         free(temp);
+
+        --lista->quantidade;
     }
 }
 
 void limpar(
-    Lista* lista)
+    Lista *lista)
 {
     while(lista->inicio)
-        excluir_inicio(lista);
+        excluirInicio(lista);
 }

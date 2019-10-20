@@ -7,9 +7,15 @@
 
 1571509188 c:\users\user\documents\github\projetotoo1\projeto\bool.h
 
-1571509014 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
+1571535517 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
-1571509277 c:\users\user\documents\github\projetotoo1\projeto\lista.h
+1571535429 c:\users\user\documents\github\projetotoo1\projeto\lista.h
+	"bool.h"
+
+1571535184 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
+	<stdio.h>
+	"lista.h"
+	"arvore.h"
 
