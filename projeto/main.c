@@ -3,6 +3,8 @@
 
 #include "fila.h"
 
+#define TAMANHO_VETOR 256
+
 /*
 Algoritmo de Huffman:
 
@@ -32,16 +34,21 @@ static void limparTela()
 
 static void compactar()
 {
+    int frequencias[TAMANHO_VETOR];
+    Lista fila;
     char buff[256];
-    char dado;
-    int count;
-    int frequencias[256];
     FILE *arqEntrada, *arqSaida;
+    unsigned char dado;
+    char count;
+    unsigned char i;
+    InfoChar infoChar;
+    NoArvore *noArvore, *esq, *dir;
 
     limparTela();
     limparVetor(
         frequencias,
-        sizeof(frequencias) / sizeof(int));
+        TAMANHO_VETOR);
+    inicializar(&fila);
 
     printf("Digite o arquivo para compactar: ");
     scanf("%s", buff);
@@ -71,13 +78,45 @@ static void compactar()
         count == 1;
         count = fread(&dado, sizeof(char), 1, arqEntrada))
     {
-        ++frequencias[dado];
+        frequencias[dado]++;
     }
 
-    printf(
-       "%i\n%i",
-       frequencias['A'],
-       frequencias['B']);
+    for(i = 0; i < TAMANHO_VETOR; ++i)
+    {
+        if (frequencias[i])
+        {
+            infoChar.caractere = i;
+            infoChar.frequencia = frequencias[i];
+            infoChar.temConteudo = true;
+
+            noArvore = novaArvore(
+                infoChar,
+                NULL,
+                NULL);
+
+            inserirFila(&fila, noArvore);
+        }
+    }
+
+    while(quantidade(&fila) >= 2)
+    {
+        esq = removerFila(&fila);
+        dir = removerFila(&fila);
+
+        infoChar.caractere = 0;
+        infoChar.temConteudo = false;
+        infoChar.frequencia =
+            esq->infoChar.frequencia +
+            dir->infoChar.frequencia;
+        noArvore = novaArvore(
+            infoChar,
+            esq,
+            dir);
+
+        inserirFila(
+            &fila,
+            noArvore);
+    }
 
     getchar();
 }
