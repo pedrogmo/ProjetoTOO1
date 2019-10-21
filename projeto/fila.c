@@ -5,17 +5,22 @@ void inserirFila(
     Lista *fila,
     NoArvore *noArvore)
 {
-    int i = 0;
+    int pos = 0;
 
-    for (; i < fila->quantidade; i++)
+    for (; pos < fila->quantidade; pos++)
     {
-        if (noArvore->infoChar.frequencia < ((NoArvore*)dadoEm(fila, i))->infoChar.frequencia)
-            inserir(fila, noArvore, i);
+        if (noArvore->infoChar.frequencia < ((NoArvore*)dadoEm(fila, i))->infoChar.frequencia){
+                inserir(fila, noArvore, pos);
+            return;
+        }
     }
+    inserirFim(fila, noArvore);
 }
 
 NoArvore *removerFila(
     Lista *fila)
 {
-
+ NoArvore* primeiroValor = (NoArvore*) dadoInicio(fila);
+ excluirInicio(fila);
+ return primeiroValor;
 }
