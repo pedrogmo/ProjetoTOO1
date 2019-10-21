@@ -19,3 +19,25 @@
 	"lista.h"
 	"arvore.h"
 
+1571655819 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+	"arvore.h"
+
+1571655689 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+	"bool.h"
+
+1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
+
+1571655297 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
+	"lista.h"
+	<stdlib.h>
+
+1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
+	"bool.h"
+
+1571659941 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
+	"fila.h"
+
+1571659941 c:\users\u18174\documents\github\projetotoo1\projeto\fila.h
+	"lista.h"
+	"arvore.h"
+

@@ -16,7 +16,37 @@ Algoritmo de Huffman:
     e a lista priorizada para formar a árvore e realizar os percursos
 */
 
-int main()
+static void compactar(void)
 {
+    printf("C");
+}
+
+static void descompactar(void)
+{
+    printf("D");
+}
+
+int main(void)
+{
+    char opcao;
+    static void(*funcoes[2])(void) =
+    {
+        &compactar, &descompactar
+    };
+
+    do
+    {
+        puts("1- Compactar");
+        puts("2- Descompactar");
+        puts("0- Sair");
+        printf("Qual opcao deseja? ");
+        fflush(stdout);
+        scanf("%i", &opcao);
+
+        if (opcao > 0)
+            (*funcoes[opcao-1]) ();
+    }
+    while(opcao);
+
     return 0;
 }
