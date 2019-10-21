@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "fila.h"
 
@@ -16,14 +17,75 @@ Algoritmo de Huffman:
     e a lista priorizada para formar a árvore e realizar os percursos
 */
 
+static void limparVetor(
+    int *vet,
+    unsigned int tamanho)
+{
+    for(; tamanho > 0; --tamanho)
+        vet[tamanho-1] = 0;
+}
+
+static void limparTela()
+{
+    system("@cls||clear");
+}
+
 static void compactar()
 {
-    puts("C\n");
+    char buff[256];
+    char dado;
+    int count;
+    int frequencias[256];
+    FILE *arqEntrada, *arqSaida;
+
+    limparTela();
+    limparVetor(
+        frequencias,
+        sizeof(frequencias) / sizeof(int));
+
+    printf("Digite o arquivo para compactar: ");
+    scanf("%s", buff);
+    fflush(stdin);
+    arqEntrada = fopen(buff, "rb");
+
+    if (!arqEntrada)
+    {
+        printf("Nao foi possivel abrir arquivo");
+        getchar();
+        return;
+    }
+
+    printf("Digite o arquivo de saida: ");
+    scanf("%s", buff);
+    fflush(stdin);
+    arqSaida = fopen(buff, "rb");
+
+    if (!arqSaida)
+    {
+        printf("Nao foi possivel abrir arquivo");
+        getchar();
+        return;
+    }
+
+    for(count = fread(&dado, sizeof(char), 1, arqEntrada);
+        count == 1;
+        count = fread(&dado, sizeof(char), 1, arqEntrada))
+    {
+        ++frequencias[dado];
+    }
+
+    printf(
+       "%i\n%i",
+       frequencias['A'],
+       frequencias['B']);
+
+    getchar();
 }
 
 static void descompactar()
 {
-    puts("D\n");
+    limparTela();
+    getchar();
 }
 
 int main()
@@ -46,7 +108,10 @@ int main()
         fflush(stdin);
 
         if (opcao > 0)
+        {
             (*funcoes[opcao-1]) ();
+            limparTela();
+        }
     }
     while(opcao);
 
