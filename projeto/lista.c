@@ -6,7 +6,7 @@ Função auxiliar private
 Static: só pode ser usada nesse arquivo
 */
 
-static No* novoNo(
+static No *novoNo(
     void *info,
     No *prox)
 {

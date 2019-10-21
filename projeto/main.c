@@ -1,7 +1,6 @@
 #include <stdio.h>
 
-#include "lista.h"
-#include "arvore.h"
+#include "fila.h"
 
 /*
 Algoritmo de Huffman:
