@@ -16,7 +16,7 @@ typedef
 typedef
     struct NoArvore
     {
-        InfoChar info;
+        InfoChar infoChar;
         struct NoArvore *esquerda;
         struct NoArvore *direita;
     } NoArvore;

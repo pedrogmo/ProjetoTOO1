@@ -6,7 +6,7 @@ NoArvore *novaArvore(
     NoArvore *dir)
 {
     NoArvore *nova = (NoArvore*) malloc(sizeof(NoArvore));
-    nova->info = info;
+    nova->infoChar = info;
     nova->esquerda = esq;
     nova->direita = dir;
     return nova;
