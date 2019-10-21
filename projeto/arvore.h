@@ -21,4 +21,9 @@ typedef
         struct NoArvore *direita;
     } NoArvore;
 
+extern NoArvore *novaArvore(
+    InfoChar info,
+    NoArvore *esq,
+    NoArvore *dir);
+
 #endif /*ARVORE*/
