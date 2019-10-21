@@ -6,7 +6,7 @@
 
 extern void inserirFila(
     Lista *fila,
-    NoArvore *arvore);
+    NoArvore *noArvore);
 
 extern NoArvore *removerFila(
     Lista *fila);
