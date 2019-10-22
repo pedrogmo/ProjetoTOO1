@@ -9,7 +9,7 @@ void inserirFila(
 
     for (; pos < fila->quantidade; pos++)
     {
-        if (noArvore->infoChar.frequencia < ((NoArvore*)dadoEm(fila, i))->infoChar.frequencia){
+        if (noArvore->infoChar.frequencia < ((NoArvore*)dadoEm(fila, pos))->infoChar.frequencia){
                 inserir(fila, noArvore, pos);
             return;
         }
@@ -20,7 +20,7 @@ void inserirFila(
 NoArvore *removerFila(
     Lista *fila)
 {
- NoArvore* primeiroValor = (NoArvore*) dadoInicio(fila);
- excluirInicio(fila);
- return primeiroValor;
+    NoArvore* primeiroValor = (NoArvore*) dadoInicio(fila);
+    excluirInicio(fila);
+    return primeiroValor;
 }

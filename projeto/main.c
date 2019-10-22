@@ -40,7 +40,7 @@ static void compactar()
     FILE *arqEntrada, *arqSaida;
     unsigned char dado;
     char count;
-    unsigned char i;
+    unsigned int i;
     InfoChar infoChar;
     NoArvore *noArvore, *esq, *dir;
 
