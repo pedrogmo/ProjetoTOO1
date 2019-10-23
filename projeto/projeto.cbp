@@ -36,6 +36,7 @@
 		</Unit>
 		<Unit filename="arvore.h" />
 		<Unit filename="bool.h" />
+		<Unit filename="charcodigo.h" />
 		<Unit filename="fila.c">
 			<Option compilerVar="CC" />
 		</Unit>
