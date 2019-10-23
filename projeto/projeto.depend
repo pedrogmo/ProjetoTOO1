@@ -19,25 +19,26 @@
 	<stdlib.h>
 	"fila.h"
 
-1571762111 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+1571752998 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 
-1571762111 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+1571752998 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
 	"bool.h"
 
-1571762111 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
+1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
 
-1571762111 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
+1571655297 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
-1571762111 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
+1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
-1571762298 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
+1571835250 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
+	<stdlib.h>
 	"fila.h"
 
-1571762111 c:\users\u18174\documents\github\projetotoo1\projeto\fila.h
+1571659941 c:\users\u18174\documents\github\projetotoo1\projeto\fila.h
 	"lista.h"
 	"arvore.h"
 

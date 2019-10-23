@@ -10,4 +10,8 @@ typedef
         char codigo[MAX_STRING];
     } CharCodigo;
 
+extern CharCodigo *novoCharCodigo(
+    char caractere,
+    char *codigoString);
+
 #endif /*CHARCODIGO*/

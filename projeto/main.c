@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "fila.h"
+#include "charcodigo.h"
 
 #define TAMANHO_VETOR 256
 
@@ -43,8 +44,6 @@ static void compactar()
     unsigned int i;
     InfoChar infoChar;
     NoArvore *noArvore, *esq, *dir;
-
-    No *noLista;
 
     limparTela();
     limparVetor(
