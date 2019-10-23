@@ -47,6 +47,8 @@ static void compactar()
     InfoChar infoChar;
     NoArvore *noArvore, *esq, *dir;
     Lista lista;
+    No *no;
+    CharCodigo *charCodigo;
 
     limparTela();
     limparVetor(
@@ -123,19 +125,20 @@ static void compactar()
             &fila,
             noArvore);
     }
+
     noArvore = removerFila(&fila);
 
     pegarCodigos(noArvore, &lista);
-    No* no = lista.inicio;
-    while (no != NULL)
+
+    for(no = lista.inicio; no != NULL; no = no->prox)
     {
-        strTeste[0] = ((CharCodigo*)no->info)->caractere;
-        strTeste[1] = '|';
-        strTeste[2] = '\0';
-        strcat(strTeste, ((CharCodigo*)no->info)->codigo);
-        puts(strTeste);
-        no = no->prox;
+        charCodigo = ((CharCodigo*)no->info);
+        printf(
+           "%c |%s|\n",
+           charCodigo->caractere,
+           charCodigo->codigo);
     }
+
     /* TRAVA A EXECUSSÃO */
     getchar();
 }
