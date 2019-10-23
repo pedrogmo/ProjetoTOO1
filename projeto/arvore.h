@@ -2,6 +2,7 @@
 #define ARVORE
 
 #include "bool.h"
+#include "lista.h"
 
 /*struct para guardar caractere e frequência*/
 typedef
@@ -25,5 +26,9 @@ extern NoArvore *novaArvore(
     InfoChar info,
     NoArvore *esq,
     NoArvore *dir);
+
+extern void pegarCodigos(
+    NoArvore *raiz,
+    Lista* lista);
 
 #endif /*ARVORE*/

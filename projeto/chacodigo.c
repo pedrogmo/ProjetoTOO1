@@ -1,7 +1,7 @@
 #include <string.h>
 #include "charcodigo.h"
 
-extern CharCodigo *novoCharCodigo(
+CharCodigo *novoCharCodigo(
     char caractere,
     char *codigoString)
 {
