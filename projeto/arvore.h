@@ -9,7 +9,7 @@ typedef
     struct
     {
         unsigned char caractere;
-        int frequencia;
+        unsigned int frequencia;
         bool temConteudo;
     } InfoChar;
 

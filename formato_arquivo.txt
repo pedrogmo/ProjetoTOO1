@@ -1,0 +1,10 @@
+1º byte: bits lixo
+
+2º byte: quantidade de caracteres (N)
+
+próximos 5 * N bytes: infoChars
+	char (1 byte)
+	freq (4 bytes)
+
+texto codificado
+bits lixo (desconsiderar)

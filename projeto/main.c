@@ -35,7 +35,7 @@ static void limparTela()
 
 static void compactar()
 {
-    int frequencias[TAMANHO_VETOR];
+    unsigned int frequencias[TAMANHO_VETOR];
     Lista fila;
     char buff[256];
     FILE *arqEntrada, *arqSaida;
