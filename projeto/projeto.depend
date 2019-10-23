@@ -1,23 +1,23 @@
 # depslib dependency file v1.0
-1571509014 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
+1571789422 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 
-1571509205 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
+1571789422 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
 	"bool.h"
 
 1571509188 c:\users\user\documents\github\projetotoo1\projeto\bool.h
 
-1571535517 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
+1571615850 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
 1571535429 c:\users\user\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
-1571535184 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
+1571791681 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
-	"lista.h"
-	"arvore.h"
+	<stdlib.h>
+	"fila.h"
 
 1571762111 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
@@ -45,4 +45,11 @@
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
+
+1571791210 source:c:\users\user\documents\github\projetotoo1\projeto\fila.c
+	"fila.h"
+
+1571789422 c:\users\user\documents\github\projetotoo1\projeto\fila.h
+	"lista.h"
+	"arvore.h"
 

@@ -44,6 +44,8 @@ static void compactar()
     InfoChar infoChar;
     NoArvore *noArvore, *esq, *dir;
 
+    No *noLista;
+
     limparTela();
     limparVetor(
         frequencias,
@@ -108,6 +110,7 @@ static void compactar()
         infoChar.frequencia =
             esq->infoChar.frequencia +
             dir->infoChar.frequencia;
+
         noArvore = novaArvore(
             infoChar,
             esq,
