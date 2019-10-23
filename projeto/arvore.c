@@ -1,6 +1,7 @@
 #include "arvore.h"
 #include "lista.h"
 #include "charcodigo.h"
+#include <stdlib.h>
 
 NoArvore *novaArvore(
     InfoChar info,
@@ -17,17 +18,27 @@ NoArvore *novaArvore(
 static void recCaminho(
     NoArvore* no,
     Lista* lista,
-    char* codigo)
+    char* codigoCompleto)
 {
-    if (no->esquerda != NULL && no->direita != NULL)
+    if (no->esquerda != NULL)
     {
-        recCaminho(no->esquerda, lista, codigo);
-        recCaminho(no->direita , lista, codigo);
+        strcat(codigoCompleto, "0");
+        recCaminho(no->esquerda, lista, codigoCompleto);
+        codigoCompleto[strlen(codigoCompleto) - 1] = 0;
     }
-    inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigo));
+    if (no->direita != NULL)
+    {
+        strcat(codigoCompleto, "1");
+        recCaminho(no->direita , lista, codigoCompleto);
+        codigoCompleto[strlen(codigoCompleto) - 1] = 0;
+    }
+    if (no->infoChar.temConteudo)
+        inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigoCompleto));
 }
 
 void pegarCodigos(NoArvore* raiz, Lista* lista)
 {
-
+    char codigo[MAX_STRING];
+    codigo[0] = '\0';
+    recCaminho(raiz, lista, codigo);
 }

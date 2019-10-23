@@ -41,15 +41,19 @@ static void compactar()
     FILE *arqEntrada, *arqSaida;
     unsigned char dado;
     char count;
+    char strTeste[3];
+    char charTeste;
     unsigned int i;
     InfoChar infoChar;
     NoArvore *noArvore, *esq, *dir;
+    Lista lista;
 
     limparTela();
     limparVetor(
         frequencias,
         TAMANHO_VETOR);
     inicializar(&fila);
+    inicializar(&lista);
 
     printf("Digite o arquivo para compactar: ");
     scanf("%s", buff);
@@ -119,7 +123,20 @@ static void compactar()
             &fila,
             noArvore);
     }
+    noArvore = removerFila(&fila);
 
+    pegarCodigos(noArvore, &lista);
+    No* no = lista.inicio;
+    while (no != NULL)
+    {
+        strTeste[0] = ((CharCodigo*)no->info)->caractere;
+        strTeste[1] = '|';
+        strTeste[2] = '\0';
+        strcat(strTeste, ((CharCodigo*)no->info)->codigo);
+        puts(strTeste);
+        no = no->prox;
+    }
+    /* TRAVA A EXECUSSÃO */
     getchar();
 }
 
