@@ -2,6 +2,7 @@
 #include "lista.h"
 #include "charcodigo.h"
 #include <stdlib.h>
+#include "formabits.h"
 
 NoArvore *novaArvore(
     InfoChar info,
