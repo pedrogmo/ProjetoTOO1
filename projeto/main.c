@@ -85,7 +85,7 @@ static bool arquivoInvalido(
     {
         printf("Nao foi possivel abrir arquivo");
         getchar();
-        return false;
+        return true;
     }
 
     if (!podeVazio)
@@ -95,12 +95,12 @@ static bool arquivoInvalido(
         {
             printf("O arquivo esta vazio");
             getchar();
-            return false;
+            return true;
         }
         ungetc(dado, arquivo);
     }
 
-    return true;
+    return false;
 }
 
 
@@ -193,6 +193,8 @@ static void descompactar()
     char buff[256];
     char bitsLixo;
     char quantidadeInfoChars;
+    unsigned int i;
+    InfoChar infoChar;
     Lista listaInfoChars;
     Lista listaCharCodigos;
 
@@ -216,7 +218,18 @@ static void descompactar()
     if(arquivoInvalido(arqSaida, true))
         return;
 
-    puts("OK");
+    bitsLixo = fgetc(arqEntrada);
+    quantidadeInfoChars = fgetc(arqEntrada);
+    printf("%i         %i", bitsLixo, quantidadeInfoChars);
+
+    for (i = 0; i < quantidadeInfoChars; ++i)
+    {
+        infoChar.caractere = fgetc(arqEntrada);
+        fread(&infoChar.frequencia, sizeof(unsigned int), 1, arqEntrada);
+        infoChar.temConteudo = true;
+        inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
+    }
+
 
     getchar();
 }
