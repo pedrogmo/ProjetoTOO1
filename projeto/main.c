@@ -32,6 +32,7 @@ static void limparTela()
 {
     system("@cls||clear");
 }
+
 static void montarArvore(Lista* fila, Lista* listaCodigos)
 {
     NoArvore *noArvore, *esq, *dir;
@@ -73,6 +74,36 @@ static void montarArvore(Lista* fila, Lista* listaCodigos)
            charCodigo->codigo);
     }*/
 }
+
+static bool arquivoInvalido(
+    FILE *arquivo,
+    bool podeVazio)
+{
+    int dado;
+
+    if (!arquivo)
+    {
+        printf("Nao foi possivel abrir arquivo");
+        getchar();
+        return false;
+    }
+
+    if (!podeVazio)
+    {
+        dado = fgetc(arquivo);
+        if (dado == EOF)
+        {
+            printf("O arquivo esta vazio");
+            getchar();
+            return false;
+        }
+        ungetc(dado, arquivo);
+    }
+
+    return true;
+}
+
+
 static void compactar()
 {
     unsigned int frequencias[TAMANHO_VETOR];
@@ -100,34 +131,16 @@ static void compactar()
     fflush(stdin);
     arqEntrada = fopen(buff, "rb");
 
-    if (!arqEntrada)
-    {
-        printf("Nao foi possivel abrir arquivo");
-        getchar();
+    if (arquivoInvalido(arqEntrada, false))
         return;
-    }
-
-    dado = fgetc(arqEntrada);
-    if (dado == EOF)
-    {
-        printf("O arquivo esta vazio");
-        getchar();
-        return;
-    }
-    ungetc(dado, arqEntrada);
-
 
     printf("Digite o arquivo de saida: ");
     gets(buff);
     fflush(stdin);
     arqSaida = fopen(buff, "wb");
 
-    if (!arqSaida)
-    {
-        printf("Nao foi possivel abrir arquivo");
-        getchar();
+    if (arquivoInvalido(arqSaida, true))
         return;
-    }
 
     while((dado = fgetc(arqEntrada)) != EOF)
     {
@@ -176,7 +189,34 @@ static void compactar()
 
 static void descompactar()
 {
+    FILE *arqEntrada, *arqSaida;
+    char buff[256];
+    char bitsLixo;
+    char quantidadeInfoChars;
+    Lista listaInfoChars;
+    Lista listaCharCodigos;
+
     limparTela();
+    inicializar(&listaInfoChars);
+    inicializar(&listaCharCodigos);
+
+    printf("Digite o arquivo para descompactar: ");
+    gets(buff);
+    fflush(stdin);
+    arqEntrada = fopen(buff, "rb");
+
+    if(arquivoInvalido(arqEntrada, false))
+        return;
+
+    printf("Digite o arquivo de saida: ");
+    gets(buff);
+    fflush(stdin);
+    arqSaida = fopen(buff, "rb");
+
+    if(arquivoInvalido(arqSaida, true))
+        return;
+
+    puts("OK");
 
     getchar();
 }
