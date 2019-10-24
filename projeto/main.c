@@ -32,33 +32,70 @@ static void limparTela()
 {
     system("@cls||clear");
 }
+static void montarArvore(Lista* fila, Lista* listaCodigos)
+{
+    NoArvore *noArvore, *esq, *dir;
+    InfoChar infoChar;
+    No *no;
+    CharCodigo *charCodigo;
 
+    while(quantidade(fila) >= 2)
+    {
+        esq = removerFila(fila);
+        dir = removerFila(fila);
+
+        infoChar.caractere = 0;
+        infoChar.temConteudo = false;
+        infoChar.frequencia =
+            esq->infoChar.frequencia +
+            dir->infoChar.frequencia;
+
+        noArvore = novaArvore(
+            infoChar,
+            esq,
+            dir);
+
+        inserirFila(
+            fila,
+            noArvore);
+    }
+
+    noArvore = removerFila(fila);
+
+    pegarCodigos(noArvore, listaCodigos);
+
+    /*for(no = listaCodigos->inicio; no != NULL; no = no->prox)
+    {
+        charCodigo = ((CharCodigo*)no->info);
+        printf(
+           "%c |%s|\n",
+           charCodigo->caractere,
+           charCodigo->codigo);
+    }*/
+}
 static void compactar()
 {
     unsigned int frequencias[TAMANHO_VETOR];
     Lista fila;
     char buff[256];
     FILE *arqEntrada, *arqSaida;
-    unsigned char dado;
-    char count;
-    char strTeste[3];
-    char charTeste;
+    int dado;
     unsigned int i;
     InfoChar infoChar;
-    NoArvore *noArvore, *esq, *dir;
-    Lista lista;
-    No *no;
-    CharCodigo *charCodigo;
+    NoArvore* noArvore;
+    Lista listaCodigos;
+
 
     limparTela();
     limparVetor(
         frequencias,
         TAMANHO_VETOR);
     inicializar(&fila);
-    inicializar(&lista);
+    inicializar(&listaCodigos);
+
 
     printf("Digite o arquivo para compactar: ");
-    scanf("%s", buff);
+    gets(buff);
     fflush(stdin);
     arqEntrada = fopen(buff, "rb");
 
@@ -69,10 +106,20 @@ static void compactar()
         return;
     }
 
+    dado = fgetc(arqEntrada);
+    if (dado == EOF)
+    {
+        printf("O arquivo esta vazio");
+        getchar();
+        return;
+    }
+    ungetc(dado, arqEntrada);
+
+
     printf("Digite o arquivo de saida: ");
-    scanf("%s", buff);
+    gets(buff);
     fflush(stdin);
-    arqSaida = fopen(buff, "rb");
+    arqSaida = fopen(buff, "wb");
 
     if (!arqSaida)
     {
@@ -81,9 +128,7 @@ static void compactar()
         return;
     }
 
-    for(count = fread(&dado, sizeof(char), 1, arqEntrada);
-        count == 1;
-        count = fread(&dado, sizeof(char), 1, arqEntrada))
+    while((dado = fgetc(arqEntrada)) != EOF)
     {
         frequencias[dado]++;
     }
@@ -105,39 +150,8 @@ static void compactar()
         }
     }
 
-    while(quantidade(&fila) >= 2)
-    {
-        esq = removerFila(&fila);
-        dir = removerFila(&fila);
+    montarArvore(&fila, &listaCodigos);
 
-        infoChar.caractere = 0;
-        infoChar.temConteudo = false;
-        infoChar.frequencia =
-            esq->infoChar.frequencia +
-            dir->infoChar.frequencia;
-
-        noArvore = novaArvore(
-            infoChar,
-            esq,
-            dir);
-
-        inserirFila(
-            &fila,
-            noArvore);
-    }
-
-    noArvore = removerFila(&fila);
-
-    pegarCodigos(noArvore, &lista);
-
-    for(no = lista.inicio; no != NULL; no = no->prox)
-    {
-        charCodigo = ((CharCodigo*)no->info);
-        printf(
-           "%c |%s|\n",
-           charCodigo->caractere,
-           charCodigo->codigo);
-    }
 
     /* TRAVA A EXECUSSÃO */
     getchar();
