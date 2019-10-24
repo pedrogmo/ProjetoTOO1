@@ -196,7 +196,9 @@ static void descompactar()
     unsigned int i;
     InfoChar infoChar;
     Lista listaInfoChars;
+    No* noLista;
     Lista listaCharCodigos;
+
 
     limparTela();
     inicializar(&listaInfoChars);
@@ -220,7 +222,6 @@ static void descompactar()
 
     bitsLixo = fgetc(arqEntrada);
     quantidadeInfoChars = fgetc(arqEntrada);
-    printf("%i         %i", bitsLixo, quantidadeInfoChars);
 
     for (i = 0; i < quantidadeInfoChars; ++i)
     {
@@ -229,6 +230,24 @@ static void descompactar()
         infoChar.temConteudo = true;
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
+    montarArvore(&listaInfoChars, &listaCharCodigos);
+    for(noLista = listaCodigos->inicio; noLista != NULL; noLista = noLista->prox)
+    {
+        charCodigo = ((CharCodigo*)noLista->info);
+        printf(
+           "%c |%s|\n",
+           charCodigo->caractere,
+           charCodigo->codigo);
+    }
+
+    /*TESTE:
+     for(noLista = listaInfoChars.inicio;
+        noLista;
+        noLista = noLista->prox)
+    {
+        infoChar = ((NoArvore*) noLista->info)->infoChar;
+        printf("%c        %i\n",infoChar.caractere, infoChar.frequencia);
+    }*/
 
 
     getchar();
