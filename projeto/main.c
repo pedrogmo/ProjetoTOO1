@@ -83,6 +83,7 @@ static void compactar()
     unsigned int i;
     InfoChar infoChar;
     NoArvore* noArvore;
+    No *noLista;
     Lista listaCodigos;
 
 
@@ -150,16 +151,33 @@ static void compactar()
         }
     }
 
+    /*bits que são lixo. será alterado depois*/
+    fputc(0, arqSaida);
+    /*quantidade de caracteres*/
+    fputc(quantidade(&fila), arqSaida);
+    /*todos os infochars:*/
+    for(noLista = fila.inicio;
+        noLista;
+        noLista = noLista->prox)
+    {
+        infoChar = ((NoArvore*) noLista->info)->infoChar;
+        fputc(infoChar.caractere, arqSaida);
+        fwrite(&infoChar.frequencia, sizeof(unsigned int), 1, arqSaida);
+    }
+
     montarArvore(&fila, &listaCodigos);
 
-
-    /* TRAVA A EXECUSSÃO */
+    /*fecha os arquivos*/
+    fclose(arqEntrada);
+    fclose(arqSaida);
+    /* TRAVA A EXECUÇÃO */
     getchar();
 }
 
 static void descompactar()
 {
     limparTela();
+
     getchar();
 }
 
