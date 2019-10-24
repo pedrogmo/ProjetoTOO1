@@ -116,7 +116,6 @@ static void compactar()
     NoArvore* noArvore;
     No *noLista;
     Lista listaCodigos;
-    CharCodigo* charCodigo;
 
 
     limparTela();
@@ -180,14 +179,6 @@ static void compactar()
     }
 
     montarArvore(&fila, &listaCodigos);
-    for(noLista = listaCodigos.inicio; noLista != NULL; noLista = noLista->prox)
-    {
-        charCodigo = ((CharCodigo*)noLista->info);
-        printf(
-           "%c |%s|\n",
-           charCodigo->caractere,
-           charCodigo->codigo);
-    }
 
     /*fecha os arquivos*/
     fclose(arqEntrada);
@@ -207,7 +198,6 @@ static void descompactar()
     Lista listaInfoChars;
     No* noLista;
     Lista listaCharCodigos;
-    CharCodigo* charCodigo;
 
 
     limparTela();
@@ -241,14 +231,6 @@ static void descompactar()
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
     montarArvore(&listaInfoChars, &listaCharCodigos);
-    for(noLista = listaCharCodigos.inicio; noLista != NULL; noLista = noLista->prox)
-    {
-        charCodigo = ((CharCodigo*)noLista->info);
-        printf(
-           "%c |%s|\n",
-           charCodigo->caractere,
-           charCodigo->codigo);
-    }
 
     /*TESTE:
      for(noLista = listaInfoChars.inicio;
