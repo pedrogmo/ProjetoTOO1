@@ -1,6 +1,8 @@
 1º byte: bits lixo
+	00000000
 
 2º byte: quantidade de caracteres (N)
+	quantidade(&fila)
 
 próximos 5 * N bytes: infoChars
 	char (1 byte)
