@@ -19,27 +19,34 @@ NoArvore *novaArvore(
 static void recCaminho(
     NoArvore* no,
     Lista* lista,
-    char* codigoCompleto)
+    char* codigoCompleto,
+    unsigned int* contagem)
 {
     if (no->esquerda != NULL)
     {
         strcat(codigoCompleto, "0");
-        recCaminho(no->esquerda, lista, codigoCompleto);
+        recCaminho(no->esquerda, lista, codigoCompleto, contagem);
         codigoCompleto[strlen(codigoCompleto) - 1] = 0;
     }
     if (no->direita != NULL)
     {
         strcat(codigoCompleto, "1");
-        recCaminho(no->direita , lista, codigoCompleto);
+        recCaminho(no->direita , lista, codigoCompleto, contagem);
         codigoCompleto[strlen(codigoCompleto) - 1] = 0;
     }
     if (no->infoChar.temConteudo)
+    {
+        *contagem += strlen(codigoCompleto) * no->infoChar.frequencia;
         inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigoCompleto));
+    }
+
 }
 
-void pegarCodigos(NoArvore* raiz, Lista* lista)
+unsigned int pegarCodigos(NoArvore* raiz, Lista* lista)
 {
     char codigo[MAX_STRING];
+    unsigned int contagem;
     codigo[0] = '\0';
-    recCaminho(raiz, lista, codigo);
+    recCaminho(raiz, lista, codigo, &contagem);
+    return contagem;
 }

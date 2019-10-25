@@ -116,6 +116,9 @@ static void compactar()
     NoArvore* noArvore;
     No *noLista;
     Lista listaCodigos;
+    unsigned char bitsLixo;
+    unsigned char byte;
+    unsigned int tamanhoString;
 
 
     limparTela();
@@ -179,6 +182,25 @@ static void compactar()
     }
 
     montarArvore(&fila, &listaCodigos);
+    tamanhoString = strlen(stringona);
+
+    for(i=0; i < tamanhoString; ++i)
+    {
+        if (i % 8 == 0){
+            fputc(arqSaida, byte);
+            byte = 0;
+        }
+        if (stringona[i] == '1')
+            setBit(byte, i % 8);
+    }
+    bitsLixo = 8 - (tamanhoString % 8);
+    if (bitsLixo)
+    {
+        fputc(arqSaida, byte);
+        fseek(arqSaida, 0, SEEK_SET);
+        fputc(bitsLixo, arqSaida);
+    }
+
 
     /*fecha os arquivos*/
     fclose(arqEntrada);
