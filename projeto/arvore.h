@@ -27,7 +27,7 @@ extern NoArvore *novaArvore(
     NoArvore *esq,
     NoArvore *dir);
 
-extern void pegarCodigos(
+extern unsigned int pegarCodigos(
     NoArvore *raiz,
     Lista* lista);
 

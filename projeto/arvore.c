@@ -45,7 +45,7 @@ static void recCaminho(
 unsigned int pegarCodigos(NoArvore* raiz, Lista* lista)
 {
     char codigo[MAX_STRING];
-    unsigned int contagem;
+    unsigned int contagem = 0;
     codigo[0] = '\0';
     recCaminho(raiz, lista, codigo, &contagem);
     return contagem;
