@@ -74,7 +74,8 @@ static unsigned int montarArvore(Lista* fila, Lista* listaCodigos)
            charCodigo->caractere,
            charCodigo->codigo);
     }*/
-    return pegarCodigos(noArvore, fila);
+    excluirArvore(noArvore);
+    return tamanhoTextoCodificado;
 }
 
 static bool arquivoInvalido(
@@ -212,7 +213,8 @@ static void compactar()
         fputc(bitsLixo, arqSaida);
     }
 
-
+    excluirCodigos(&listaCodigos);
+    limpar(&listaCodigos);
     /*fecha os arquivos*/
     fclose(arqEntrada);
     fclose(arqSaida);
