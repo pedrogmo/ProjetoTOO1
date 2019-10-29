@@ -20,33 +20,38 @@ static void recCaminho(
     NoArvore* no,
     Lista* lista,
     char* codigoCompleto,
+    unsigned int tamanhoCodigo,
     unsigned int* contagem)
 {
     if (no->esquerda != NULL)
     {
         strcat(codigoCompleto, "0");
-        recCaminho(no->esquerda, lista, codigoCompleto, contagem);
-        codigoCompleto[strlen(codigoCompleto) - 1] = 0;
+        ++tamanhoCodigo;
+        recCaminho(no->esquerda, lista, codigoCompleto, tamanhoCodigo, contagem);
+        codigoCompleto[tamanhoCodigo - 1] = 0;
+        --tamanhoCodigo;
     }
     if (no->direita != NULL)
     {
         strcat(codigoCompleto, "1");
-        recCaminho(no->direita , lista, codigoCompleto, contagem);
-        codigoCompleto[strlen(codigoCompleto) - 1] = 0;
+        ++tamanhoCodigo;
+        recCaminho(no->direita , lista, codigoCompleto, tamanhoCodigo, contagem);
+        codigoCompleto[tamanhoCodigo - 1] = 0;
     }
     if (no->infoChar.temConteudo)
     {
-        *contagem += strlen(codigoCompleto) * no->infoChar.frequencia;
-        inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigoCompleto));
+        *contagem += tamanhoCodigo * no->infoChar.frequencia;
+        inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo));
     }
-
 }
 
-unsigned int pegarCodigos(NoArvore* raiz, Lista* lista)
+unsigned int pegarCodigos(
+    NoArvore* raiz,
+    Lista* lista)
 {
     char codigo[MAX_STRING];
     unsigned int contagem = 0;
     codigo[0] = '\0';
-    recCaminho(raiz, lista, codigo, &contagem);
+    recCaminho(raiz, lista, codigo, 0, &contagem);
     return contagem;
 }

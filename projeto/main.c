@@ -39,6 +39,7 @@ static void montarArvore(Lista* fila, Lista* listaCodigos)
     InfoChar infoChar;
     No *no;
     CharCodigo *charCodigo;
+    unsigned int tamanhoTextoCodificado;
 
     while(quantidade(fila) >= 2)
     {
@@ -63,7 +64,7 @@ static void montarArvore(Lista* fila, Lista* listaCodigos)
 
     noArvore = removerFila(fila);
 
-    pegarCodigos(noArvore, listaCodigos);
+    tamanhoTextoCodificado = pegarCodigos(noArvore, listaCodigos);
 
     /*for(no = listaCodigos->inicio; no != NULL; no = no->prox)
     {
@@ -119,6 +120,7 @@ static void compactar()
     unsigned char bitsLixo;
     unsigned char byte;
     unsigned int tamanhoString;
+    char *stringona;
 
 
     limparTela();
@@ -182,7 +184,6 @@ static void compactar()
     }
 
     montarArvore(&fila, &listaCodigos);
-    tamanhoString = strlen(stringona);
 
     for(i=0; i < tamanhoString; ++i)
     {

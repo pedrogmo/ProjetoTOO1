@@ -1,17 +1,23 @@
 #ifndef CHARCODIGO
 #define CHARCODIGO
 
-#define MAX_STRING 17
+#define MAX_STRING 256
+
+#include "lista.h"
 
 typedef
     struct
     {
         char caractere;
-        char codigo[MAX_STRING];
+        char *codigo;
     } CharCodigo;
 
 extern CharCodigo *novoCharCodigo(
     char caractere,
-    char *codigoString);
+    char *codigoString,
+    int tamanhoString);
+
+extern void excluirCodigos(
+    Lista *lista);
 
 #endif /*CHARCODIGO*/

@@ -19,14 +19,14 @@
 	<stdlib.h>
 	"fila.h"
 
-1571924538 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+1572357220 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 	"lista.h"
 	"charcodigo.h"
 	<stdlib.h>
 	"formabits.h"
 
-1571848449 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+1572349393 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
 	"bool.h"
 	"lista.h"
 
@@ -100,7 +100,8 @@
 	"fila.h"
 	"charcodigo.h"
 
-1571838816 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
+1572357308 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
+	"lista.h"
 
 1571839328 source:c:\users\u18174\documents\github\projetotoo1\projeto\chacodigo.c
 	<string.h>
@@ -117,7 +118,7 @@
 
 1571924538 c:\users\u18174\documents\github\projetotoo1\projeto\formabits.h
 
-1571924538 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
+1572357003 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
 
