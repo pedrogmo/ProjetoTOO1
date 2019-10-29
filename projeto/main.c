@@ -33,7 +33,7 @@ static void limparTela()
     system("@cls||clear");
 }
 
-static void montarArvore(Lista* fila, Lista* listaCodigos)
+static unsigned int montarArvore(Lista* fila, Lista* listaCodigos)
 {
     NoArvore *noArvore, *esq, *dir;
     InfoChar infoChar;
@@ -74,6 +74,7 @@ static void montarArvore(Lista* fila, Lista* listaCodigos)
            charCodigo->caractere,
            charCodigo->codigo);
     }*/
+    return pegarCodigos(noArvore, fila);
 }
 
 static bool arquivoInvalido(
