@@ -184,7 +184,8 @@ static void compactar()
         fwrite(&infoChar.frequencia, sizeof(unsigned int), 1, arqSaida);
     }
 
-    montarArvore(&fila, &listaCodigos);
+    tamanhoString = montarArvore(&fila, &listaCodigos);
+    stringona = (*char)malloc(tamanhoString + 1);
 
     for(i=0; i < tamanhoString; ++i)
     {
