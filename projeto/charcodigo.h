@@ -20,4 +20,8 @@ extern CharCodigo *novoCharCodigo(
 extern void excluirCodigos(
     Lista *lista);
 
+extern char *codigoDe(
+    char caractere,
+    Lista *lista);
+
 #endif /*CHARCODIGO*/

@@ -26,3 +26,20 @@ void excluirCodigos(
         free(charCodigo->codigo);
     }
 }
+
+char *codigoDe(
+    char caractere,
+    Lista *lista)
+{
+    No *no;
+    CharCodigo *charCodigo;
+    for(no = lista->inicio;
+        no;
+        no = no->prox)
+    {
+        charCodigo = (CharCodigo*) no->info;
+        if (charCodigo->caractere == caractere)
+            return charCodigo->codigo;
+    }
+    return NULL;
+}
