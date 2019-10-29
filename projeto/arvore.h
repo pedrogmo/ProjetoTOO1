@@ -31,4 +31,7 @@ extern unsigned int pegarCodigos(
     NoArvore *raiz,
     Lista* lista);
 
+extern void excluirArvore(
+    NoArvore *raiz);
+
 #endif /*ARVORE*/
