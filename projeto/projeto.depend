@@ -64,7 +64,8 @@
 	<string.h>
 	"charcodigo.h"
 
-1571839031 c:\users\u18015\documents\github\projetotoo1\projeto\charcodigo.h
+1572358189 c:\users\u18015\documents\github\projetotoo1\projeto\charcodigo.h
+	"lista.h"
 
 1571835172 source:c:\users\u18015\documents\github\projetotoo1\projeto\fila.c
 	<stdlib.h>
@@ -79,7 +80,7 @@
 
 1571655332 c:\users\u18015\documents\github\projetotoo1\projeto\bool.h
 
-1572345316 c:\users\u18015\documents\github\projetotoo1\projeto\arvore.h
+1572358690 c:\users\u18015\documents\github\projetotoo1\projeto\arvore.h
 	"bool.h"
 	"lista.h"
 
@@ -112,7 +113,7 @@
 1571920749 source:c:\users\u18015\documents\github\projetotoo1\projeto\formabits.c
 	"formabits.h"
 
-1571923106 source:c:\users\u18015\documents\github\projetotoo1\projeto\charcodigo.c
+1572358189 source:c:\users\u18015\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
 
@@ -121,4 +122,9 @@
 1572357003 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
+
+1572358270 source:c:\users\u18015\documents\github\projetotoo1\projeto\bits.c
+	"bits.h"
+
+1572358189 c:\users\u18015\documents\github\projetotoo1\projeto\bits.h
 

@@ -185,7 +185,15 @@ static void compactar()
     }
 
     tamanhoString = montarArvore(&fila, &listaCodigos);
-    stringona = (*char)malloc(tamanhoString + 1);
+    stringona = (char*)malloc(tamanhoString + 1);
+
+    rewind(arqEntrada);
+
+    for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
+    {
+        strcat(stringona, codigoDe(dado, &listaCodigos));
+    }
+
 
     for(i=0; i < tamanhoString; ++i)
     {
