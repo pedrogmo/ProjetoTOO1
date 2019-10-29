@@ -55,3 +55,14 @@ unsigned int pegarCodigos(
     recCaminho(raiz, lista, codigo, 0, &contagem);
     return contagem;
 }
+
+void excluirArvore(
+    NoArvore *raiz)
+{
+    if (raiz)
+    {
+        excluirArvore(raiz->esquerda);
+        excluirArvore(raiz->direita);
+        free(raiz);
+    }
+}
