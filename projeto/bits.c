@@ -1,6 +1,6 @@
 #include "bits.h"
 
-extern void setBit(
+void setBit(
     unsigned char qualBit,
     char *byte)
 {
