@@ -73,7 +73,9 @@ static unsigned int montarArvore(Lista* fila, Lista* listaCodigos)
            "%c |%s|\n",
            charCodigo->caractere,
            charCodigo->codigo);
-    }*/
+    }
+    putchar('\n');*/
+
     excluirArvore(noArvore);
     return tamanhoTextoCodificado;
 }
@@ -187,6 +189,7 @@ static void compactar()
 
     tamanhoString = montarArvore(&fila, &listaCodigos);
     stringona = (char*)malloc(tamanhoString + 1);
+    stringona[0] = 0;
 
     rewind(arqEntrada);
 
@@ -195,20 +198,20 @@ static void compactar()
         strcat(stringona, codigoDe(dado, &listaCodigos));
     }
 
-
     for(i=0; i < tamanhoString; ++i)
     {
-        if (i % 8 == 0){
-            fputc(arqSaida, byte);
+        if (i != 0 && i % 8 == 0)
+        {
+            fputc(byte, arqSaida);
             byte = 0;
         }
         if (stringona[i] == '1')
-            setBit(byte, i % 8);
+            setBit(i % 8, &byte);
     }
     bitsLixo = 8 - (tamanhoString % 8);
     if (bitsLixo)
     {
-        fputc(arqSaida, byte);
+        fputc(byte, arqSaida);
         fseek(arqSaida, 0, SEEK_SET);
         fputc(bitsLixo, arqSaida);
     }

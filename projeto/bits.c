@@ -4,7 +4,7 @@ void setBit(
     unsigned char qualBit,
     char *byte)
 {
-    unsigned char bitDesejado = 1;
-    bitDesejado <<= qualBit;
+    unsigned char bitDesejado = 0b10000000;
+    bitDesejado >>= qualBit;
     *byte |= bitDesejado;
 }
