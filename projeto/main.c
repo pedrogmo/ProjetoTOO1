@@ -33,37 +33,7 @@ static void limparTela()
     system("@cls||clear");
 }
 
-static NoArvore *montarArvore(
-    Lista* fila)
-{
-    NoArvore *noArvore, *esq, *dir;
-    InfoChar infoChar;
-    No *no;
-    CharCodigo *charCodigo;
 
-    while(quantidade(fila) >= 2)
-    {
-        esq = removerFila(fila);
-        dir = removerFila(fila);
-
-        infoChar.caractere = 0;
-        infoChar.temConteudo = false;
-        infoChar.frequencia =
-            esq->infoChar.frequencia +
-            dir->infoChar.frequencia;
-
-        noArvore = novaArvore(
-            infoChar,
-            esq,
-            dir);
-
-        inserirFila(
-            fila,
-            noArvore);
-    }
-
-    return removerFila(fila);
-}
 
 static bool arquivoInvalido(
     FILE *arquivo,
