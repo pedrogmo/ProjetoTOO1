@@ -75,7 +75,7 @@
 	"lista.h"
 	"arvore.h"
 
-1571655332 c:\users\u18015\documents\github\projetotoo1\projeto\lista.h
+1572451854 c:\users\u18015\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
 1571655332 c:\users\u18015\documents\github\projetotoo1\projeto\bool.h
@@ -84,18 +84,18 @@
 	"bool.h"
 	"lista.h"
 
-1571655332 source:c:\users\u18015\documents\github\projetotoo1\projeto\lista.c
+1572451854 source:c:\users\u18015\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
-1572447290 source:c:\users\u18015\documents\github\projetotoo1\projeto\arvore.c
+1572447554 source:c:\users\u18015\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 	"lista.h"
 	"charcodigo.h"
 	<stdlib.h>
 	"formabits.h"
 
-1572447527 source:c:\users\u18015\documents\github\projetotoo1\projeto\main.c
+1572453304 source:c:\users\u18015\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"

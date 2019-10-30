@@ -176,7 +176,7 @@ static void compactar()
     }
 
     excluirCodigos(&listaCodigos);
-    limpar(&listaCodigos);
+    limparLista(&listaCodigos);
     /*fecha os arquivos*/
     fclose(arqEntrada);
     fclose(arqSaida);
@@ -196,6 +196,10 @@ static void descompactar()
     Lista listaInfoChars;
     No* noLista;
     NoArvore *noArvore;
+    NoArvore *raiz;
+    int dado;
+    int dado2;
+    unsigned char ateOnde;
 
 
     limparTela();
@@ -227,10 +231,35 @@ static void descompactar()
         infoChar.temConteudo = true;
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
-    noArvore = montarArvore(&listaInfoChars);
+    raiz = montarArvore(&listaInfoChars);
+
 
     /*percurso pela árvore com o texto codificado*/
-
+    noArvore = raiz;
+    for (dado = fgetc(arqEntrada); dado != EOF; dado = fgetc(arqEntrada))
+    {
+        dado2 = fgetc(arqEntrada);
+        if (dado2 == EOF)
+            ateOnde = 8 - bitsLixo;
+        else
+            ateOnde = 8;
+        ungetc(dado2, arqEntrada);
+        for (i = 0; i < ateOnde; i++){
+            if (noArvore->infoChar.temConteudo){
+                fputc(noArvore->infoChar.caractere, arqSaida);
+                noArvore = raiz;
+            }
+            if (isUm(i, dado))
+                noArvore = noArvore->direita;
+            else
+                noArvore = noArvore->esquerda;
+        }
+    }
+    excluirArvore(raiz);
+    fclose(arqEntrada);
+    fclose(arqSaida);
+    /* TRAVA A EXECUÇÃO */
+    printf("\nArquivo descompactado");
     getchar();
 }
 

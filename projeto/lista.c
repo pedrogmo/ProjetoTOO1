@@ -192,7 +192,7 @@ void excluir(
     }
 }
 
-void limpar(
+void limparLista(
     Lista *lista)
 {
     while(lista->inicio)

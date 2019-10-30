@@ -62,7 +62,7 @@ extern void excluir(
     Lista *lista,
     unsigned int pos);
 
-extern void limpar(
+extern void limparLista(
     Lista *lista);
 
 #endif /*LISTA*/
