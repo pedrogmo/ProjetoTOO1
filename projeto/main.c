@@ -33,13 +33,13 @@ static void limparTela()
     system("@cls||clear");
 }
 
-static unsigned int montarArvore(Lista* fila, Lista* listaCodigos)
+static NoArvore *montarArvore(
+    Lista* fila)
 {
     NoArvore *noArvore, *esq, *dir;
     InfoChar infoChar;
     No *no;
     CharCodigo *charCodigo;
-    unsigned int tamanhoTextoCodificado;
 
     while(quantidade(fila) >= 2)
     {
@@ -62,22 +62,7 @@ static unsigned int montarArvore(Lista* fila, Lista* listaCodigos)
             noArvore);
     }
 
-    noArvore = removerFila(fila);
-
-    tamanhoTextoCodificado = pegarCodigos(noArvore, listaCodigos);
-
-    /*for(no = listaCodigos->inicio; no != NULL; no = no->prox)
-    {
-        charCodigo = ((CharCodigo*)no->info);
-        printf(
-           "%c |%s|\n",
-           charCodigo->caractere,
-           charCodigo->codigo);
-    }
-    putchar('\n');*/
-
-    excluirArvore(noArvore);
-    return tamanhoTextoCodificado;
+    return removerFila(fila);
 }
 
 static bool arquivoInvalido(
@@ -187,7 +172,11 @@ static void compactar()
         fwrite(&infoChar.frequencia, sizeof(unsigned int), 1, arqSaida);
     }
 
-    tamanhoString = montarArvore(&fila, &listaCodigos);
+    noArvore = montarArvore(&fila);
+
+    tamanhoString = pegarCodigos(noArvore, &listaCodigos);
+    excluirArvore(noArvore);
+
     stringona = (char*)malloc(tamanhoString + 1);
     stringona[0] = 0;
 
@@ -222,6 +211,7 @@ static void compactar()
     fclose(arqEntrada);
     fclose(arqSaida);
     /* TRAVA A EXECUÇÃO */
+    printf("\nArquivo compactado");
     getchar();
 }
 
@@ -235,12 +225,11 @@ static void descompactar()
     InfoChar infoChar;
     Lista listaInfoChars;
     No* noLista;
-    Lista listaCharCodigos;
+    NoArvore *noArvore;
 
 
     limparTela();
     inicializar(&listaInfoChars);
-    inicializar(&listaCharCodigos);
 
     printf("Digite o arquivo para descompactar: ");
     gets(buff);
@@ -268,17 +257,9 @@ static void descompactar()
         infoChar.temConteudo = true;
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
-    montarArvore(&listaInfoChars, &listaCharCodigos);
+    noArvore = montarArvore(&listaInfoChars);
 
-    /*TESTE:
-     for(noLista = listaInfoChars.inicio;
-        noLista;
-        noLista = noLista->prox)
-    {
-        infoChar = ((NoArvore*) noLista->info)->infoChar;
-        printf("%c        %i\n",infoChar.caractere, infoChar.frequencia);
-    }*/
-
+    /*percurso pela árvore com o texto codificado*/
 
     getchar();
 }
