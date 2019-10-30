@@ -19,14 +19,14 @@
 	<stdlib.h>
 	"fila.h"
 
-1572358540 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+1572450554 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 	"lista.h"
 	"charcodigo.h"
 	<stdlib.h>
 	"formabits.h"
 
-1572358368 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+1572450554 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
 	"bool.h"
 	"lista.h"
 
@@ -47,7 +47,7 @@
 	"lista.h"
 	"arvore.h"
 
-1572360506 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
+1572450632 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
@@ -129,8 +129,9 @@
 1572446390 c:\users\u18015\documents\github\projetotoo1\projeto\bits.h
 	"bool.h"
 
-1572360976 source:c:\users\u18174\documents\github\projetotoo1\projeto\bits.c
+1572450554 source:c:\users\u18174\documents\github\projetotoo1\projeto\bits.c
 	"bits.h"
 
-1572358037 c:\users\u18174\documents\github\projetotoo1\projeto\bits.h
+1572447439 c:\users\u18174\documents\github\projetotoo1\projeto\bits.h
+	"bool.h"
 

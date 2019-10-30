@@ -236,15 +236,15 @@ static void descompactar()
 
 int main()
 {
-    char opcao;
-
     static void(*funcoes[2])() =
     {
         &compactar, &descompactar
     };
 
-    do
+    for(;;)
     {
+        char opcao = 0;
+
         puts("1- Compactar");
         puts("2- Descompactar");
         puts("0- Sair");
@@ -253,13 +253,12 @@ int main()
         scanf("%i", &opcao);
         fflush(stdin);
 
-        if (opcao > 0)
-        {
-            (*funcoes[opcao-1]) ();
-            limparTela();
-        }
+        if(opcao <= 0 || opcao > 2)
+            break;
+
+        (*funcoes[opcao-1]) ();
+        limparTela();
     }
-    while(opcao);
 
     return 0;
 }
