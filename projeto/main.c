@@ -249,11 +249,18 @@ static void descompactar()
                 fputc(noArvore->infoChar.caractere, arqSaida);
                 noArvore = raiz;
             }
-            if (isUm(i, dado))
+            if (isUm(i, dado)){
                 noArvore = noArvore->direita;
+                printf("%c", '1');
+            }
             else
+            {
                 noArvore = noArvore->esquerda;
+                printf("%c", '0');
+            }
+
         }
+        putc(' ', stdout);
     }
     excluirArvore(raiz);
     fclose(arqEntrada);
