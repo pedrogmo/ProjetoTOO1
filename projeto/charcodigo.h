@@ -13,7 +13,7 @@ typedef
     } CharCodigo;
 
 extern CharCodigo *novoCharCodigo(
-    char caractere,
+    unsigned char caractere,
     char *codigoString,
     int tamanhoString);
 
@@ -21,7 +21,7 @@ extern void excluirCodigos(
     Lista *lista);
 
 extern char *codigoDe(
-    char caractere,
+    unsigned char caractere,
     Lista *lista);
 
 #endif /*CHARCODIGO*/

@@ -70,6 +70,7 @@ static void compactar()
     Lista fila;
     char buff[256];
     FILE *arqEntrada, *arqSaida;
+    short int qtdCharCodigos;
     int dado;
     unsigned int i;
     InfoChar infoChar;
@@ -80,6 +81,7 @@ static void compactar()
     unsigned char byte;
     unsigned int tamanhoString;
     char *stringona;
+    char *codigoObtido;
 
 
     limparTela();
@@ -131,7 +133,9 @@ static void compactar()
     /*bits que são lixo. será alterado depois*/
     fputc(0, arqSaida);
     /*quantidade de caracteres*/
-    fputc(quantidade(&fila), arqSaida);
+    qtdCharCodigos = quantidade(&fila);
+    fwrite(&qtdCharCodigos, sizeof(short int), 1, arqSaida);
+    /*fputc(quantidade(&fila), arqSaida);
     /*todos os infochars:*/
     for(noLista = fila.inicio;
         noLista;
@@ -154,7 +158,11 @@ static void compactar()
 
     for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
-        strcat(stringona, codigoDe(dado, &listaCodigos));
+        codigoObtido =  codigoDe(dado, &listaCodigos);
+        if (codigoObtido)
+        strcat(stringona, codigoObtido);
+        else
+            printf("%c %i", dado, dado);
     }
 
     for(i=0; i < tamanhoString; ++i)
@@ -190,7 +198,7 @@ static void descompactar()
     FILE *arqEntrada, *arqSaida;
     char buff[256];
     char bitsLixo;
-    char quantidadeInfoChars;
+    short int quantidadeInfoChars;
     unsigned int i;
     InfoChar infoChar;
     Lista listaInfoChars;
@@ -222,7 +230,7 @@ static void descompactar()
         return;
 
     bitsLixo = fgetc(arqEntrada);
-    quantidadeInfoChars = fgetc(arqEntrada);
+    fread(&quantidadeInfoChars, sizeof(short int), 1, arqEntrada);
 
     for (i = 0; i < quantidadeInfoChars; ++i)
     {
@@ -247,7 +255,6 @@ static void descompactar()
         {
             if (noArvore->infoChar.temConteudo)
             {
-                printf("%c", noArvore->infoChar.caractere);
                 fputc(noArvore->infoChar.caractere, arqSaida);
                 fflush(arqSaida);
                 noArvore = raiz;

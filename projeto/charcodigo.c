@@ -2,7 +2,7 @@
 #include "charcodigo.h"
 
 CharCodigo *novoCharCodigo(
-    char caractere,
+    unsigned char caractere,
     char *codigoString,
     int tamanhoString)
 {
@@ -28,7 +28,7 @@ void excluirCodigos(
 }
 
 char *codigoDe(
-    char caractere,
+    unsigned char caractere,
     Lista *lista)
 {
     No *no;
