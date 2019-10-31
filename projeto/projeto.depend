@@ -32,11 +32,11 @@
 
 1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
 
-1571655297 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
+1572454015 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
-1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
+1572454015 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
 1571835250 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
@@ -47,7 +47,7 @@
 	"lista.h"
 	"arvore.h"
 
-1572450632 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
+1572532493 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
