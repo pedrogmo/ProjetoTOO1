@@ -216,7 +216,7 @@ static void descompactar()
     printf("Digite o arquivo de saida: ");
     gets(buff);
     fflush(stdin);
-    arqSaida = fopen(buff, "rb");
+    arqSaida = fopen(buff, "wb");
 
     if(arquivoInvalido(arqSaida, true))
         return;
@@ -232,7 +232,6 @@ static void descompactar()
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
     raiz = montarArvore(&listaInfoChars);
-
 
     /*percurso pela árvore com o texto codificado*/
     noArvore = raiz;
@@ -250,6 +249,7 @@ static void descompactar()
             {
                 printf("%c", noArvore->infoChar.caractere);
                 fputc(noArvore->infoChar.caractere, arqSaida);
+                fflush(arqSaida);
                 noArvore = raiz;
             }
 
