@@ -8,7 +8,7 @@
 typedef
     struct
     {
-        char caractere;
+        unsigned char caractere;
         char *codigo;
     } CharCodigo;
 

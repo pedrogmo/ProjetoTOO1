@@ -240,7 +240,7 @@ static void descompactar()
     {
         dado2 = fgetc(arqEntrada);
         if (dado2 == EOF)
-            ateOnde = 8 - bitsLixo;
+            ateOnde = (8 - bitsLixo) + 1;
         else
             ateOnde = 8;
         ungetc(dado2, arqEntrada);
@@ -252,11 +252,14 @@ static void descompactar()
                 fputc(noArvore->infoChar.caractere, arqSaida);
                 noArvore = raiz;
             }
-            if (isUm(i, dado))
-                noArvore = noArvore->direita;
-            else
-                noArvore = noArvore->esquerda;
 
+            if (ateOnde == 8 || i < ateOnde - 1)
+            {
+                if (isUm(i, dado))
+                    noArvore = noArvore->direita;
+                else
+                    noArvore = noArvore->esquerda;
+            }
         }
     }
     excluirArvore(raiz);
