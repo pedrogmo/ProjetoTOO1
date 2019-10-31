@@ -94,7 +94,6 @@ NoArvore *montarArvore(
             fila,
             noArvore);
     }
-    printf("%i", quantidade(fila));
 
     return removerFila(fila);
 }
