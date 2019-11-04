@@ -33,14 +33,10 @@ static void limparTela()
     system("@cls||clear");
 }
 
-
-
 static bool arquivoInvalido(
     FILE *arquivo,
     bool podeVazio)
 {
-    int dado;
-
     if (!arquivo)
     {
         printf("Nao foi possivel abrir arquivo");
@@ -50,7 +46,7 @@ static bool arquivoInvalido(
 
     if (!podeVazio)
     {
-        dado = fgetc(arquivo);
+        int dado = fgetc(arquivo);
         if (dado == EOF)
         {
             printf("O arquivo esta vazio");
@@ -132,10 +128,11 @@ static void compactar()
 
     /*bits que são lixo. será alterado depois*/
     fputc(0, arqSaida);
+
     /*quantidade de caracteres*/
     qtdCharCodigos = quantidade(&fila);
     fwrite(&qtdCharCodigos, sizeof(short int), 1, arqSaida);
-    /*fputc(quantidade(&fila), arqSaida);
+
     /*todos os infochars:*/
     for(noLista = fila.inicio;
         noLista;
@@ -160,9 +157,7 @@ static void compactar()
     {
         codigoObtido =  codigoDe(dado, &listaCodigos);
         if (codigoObtido)
-        strcat(stringona, codigoObtido);
-        else
-            printf("%c %i", dado, dado);
+            strcat(stringona, codigoObtido);
     }
 
     for(i=0; i < tamanhoString; ++i)
@@ -175,6 +170,7 @@ static void compactar()
         if (stringona[i] == '1')
             setBit(i % 8, &byte);
     }
+
     bitsLixo = 8 - (tamanhoString % 8);
     if (bitsLixo)
     {
@@ -183,12 +179,15 @@ static void compactar()
         fputc(bitsLixo, arqSaida);
     }
 
+    /*limpa memória dinamicamente alocada*/
     excluirCodigos(&listaCodigos);
     limparLista(&listaCodigos);
+
     /*fecha os arquivos*/
     fclose(arqEntrada);
     fclose(arqSaida);
-    /* TRAVA A EXECUÇÃO */
+
+    /*trava a execução*/
     printf("\nArquivo compactado");
     getchar();
 }
@@ -206,9 +205,6 @@ static void descompactar()
     NoArvore *noArvore;
     NoArvore *raiz;
     int dado;
-    int dado2;
-    unsigned char ateOnde;
-
 
     limparTela();
     inicializar(&listaInfoChars);
@@ -245,12 +241,15 @@ static void descompactar()
     noArvore = raiz;
     for (dado = fgetc(arqEntrada); dado != EOF; dado = fgetc(arqEntrada))
     {
-        dado2 = fgetc(arqEntrada);
+        unsigned char ateOnde;
+        int dado2 = fgetc(arqEntrada);
+
         if (dado2 == EOF)
             ateOnde = (8 - bitsLixo) + 1;
         else
             ateOnde = 8;
         ungetc(dado2, arqEntrada);
+
         for (i = 0; i < ateOnde; i++)
         {
             if (noArvore->infoChar.temConteudo)
@@ -269,10 +268,15 @@ static void descompactar()
             }
         }
     }
+
+    /*exclui nós da árvore*/
     excluirArvore(raiz);
+
+    /*fecha os arquivos*/
     fclose(arqEntrada);
     fclose(arqSaida);
-    /* TRAVA A EXECUÇÃO */
+
+    /*trava a execução*/
     printf("\nArquivo descompactado");
     getchar();
 }
