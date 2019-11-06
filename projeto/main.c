@@ -76,7 +76,7 @@ static void compactar()
     unsigned char bitsLixo;
     unsigned char byte;
     unsigned int tamanhoString;
-    char *stringona;
+    char *textoCodificado;
     char *codigoObtido;
 
 
@@ -104,11 +104,11 @@ static void compactar()
     if (arquivoInvalido(arqSaida, true))
         return;
 
+    /*lê arquivo e coloca frequência de cada char na posição correspondente*/
     while((dado = fgetc(arqEntrada)) != EOF)
-    {
         frequencias[dado]++;
-    }
 
+    /*percorre vetor de frequências e insere nós na fila*/
     for(i = 0; i < TAMANHO_VETOR; ++i)
     {
         if (frequencias[i])
@@ -126,14 +126,14 @@ static void compactar()
         }
     }
 
-    /*bits que são lixo. será alterado depois*/
+    /*bits que são lixo, será sobrescrito depois*/
     fputc(0, arqSaida);
 
     /*quantidade de caracteres*/
     qtdCharCodigos = quantidade(&fila);
     fwrite(&qtdCharCodigos, sizeof(short int), 1, arqSaida);
 
-    /*todos os infochars:*/
+    /*escreve cada char e frequência dele*/
     for(noLista = fila.inicio;
         noLista;
         noLista = noLista->prox)
@@ -148,18 +148,22 @@ static void compactar()
     tamanhoString = pegarCodigos(noArvore, &listaCodigos);
     excluirArvore(noArvore);
 
-    stringona = (char*)malloc(tamanhoString + 1);
-    stringona[0] = 0;
+    /*aloca dinamicamente string com todo o texto codificado*/
+    textoCodificado = (char*)malloc(tamanhoString + 1);
+    textoCodificado[0] = 0;
 
+    /*reinicia arquivo para segunda leitura*/
     rewind(arqEntrada);
 
+    /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
     for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
         codigoObtido =  codigoDe(dado, &listaCodigos);
         if (codigoObtido)
-            strcat(stringona, codigoObtido);
+            strcat(textoCodificado, codigoObtido);
     }
 
+    /*percorre a string; gera e escreve os bytes correspondentes*/
     for(i=0; i < tamanhoString; ++i)
     {
         if (i != 0 && i % 8 == 0)
@@ -167,10 +171,11 @@ static void compactar()
             fputc(byte, arqSaida);
             byte = 0;
         }
-        if (stringona[i] == '1')
+        if (textoCodificado[i] == '1')
             setBit(i % 8, &byte);
     }
 
+    /*calcula-se a quantidade de bits que sobram e escreve no arquivo*/
     bitsLixo = 8 - (tamanhoString % 8);
     if (bitsLixo)
     {
@@ -225,9 +230,13 @@ static void descompactar()
     if(arquivoInvalido(arqSaida, true))
         return;
 
+    /*lê a quantidade de bits de lixo*/
     bitsLixo = fgetc(arqEntrada);
+
+    /*lê a quantidade de caracteres presentes e codificados*/
     fread(&quantidadeInfoChars, sizeof(short int), 1, arqEntrada);
 
+    /*lê cada char e sua frequência e adiciona na lista*/
     for (i = 0; i < quantidadeInfoChars; ++i)
     {
         infoChar.caractere = fgetc(arqEntrada);
@@ -241,6 +250,7 @@ static void descompactar()
     noArvore = raiz;
     for (dado = fgetc(arqEntrada); dado != EOF; dado = fgetc(arqEntrada))
     {
+        /*determina-se a quantidade de bits que deve ser considerada do byte atual*/
         unsigned char ateOnde;
         int dado2 = fgetc(arqEntrada);
 
@@ -250,8 +260,10 @@ static void descompactar()
             ateOnde = 8;
         ungetc(dado2, arqEntrada);
 
+        /*percorre-se cada bit do byte atual percorrendo a árvore*/
         for (i = 0; i < ateOnde; i++)
         {
+            /*se nó atual tem conteúdo, é escrito no arquivo*/
             if (noArvore->infoChar.temConteudo)
             {
                 fputc(noArvore->infoChar.caractere, arqSaida);
@@ -259,6 +271,7 @@ static void descompactar()
                 noArvore = raiz;
             }
 
+            /*se pode continuar, vai para esquerda ou direita dependendo do bit*/
             if (ateOnde == 8 || i < ateOnde - 1)
             {
                 if (isUm(i, dado))
