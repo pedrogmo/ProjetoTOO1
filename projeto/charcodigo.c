@@ -49,8 +49,8 @@ char *codigoDe(
 {
     void *busca;
     CharCodigo charCodigo;
-    charCodigo.caractere = caractere;
 
+    charCodigo.caractere = caractere;
     busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 
     if (!busca)

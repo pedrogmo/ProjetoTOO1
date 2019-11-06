@@ -5,6 +5,7 @@
 #include "charcodigo.h"
 
 #define TAMANHO_VETOR 256
+#define MAX_BUFFER 1024
 
 /*
 Algoritmo de Huffman:
@@ -63,29 +64,25 @@ static bool arquivoInvalido(
 static void compactar()
 {
     unsigned int frequencias[TAMANHO_VETOR];
-    Lista fila;
-    char buff[256];
+    char buff[MAX_BUFFER];
     FILE *arqEntrada, *arqSaida;
-    short int qtdCharCodigos;
+    Lista filaInfoChars;
     int dado;
     unsigned int i;
-    InfoChar infoChar;
     NoArvore* noArvore;
+    short int qtdCharCodigos;
     No *noLista;
     CharCodigo *vetorCodigos;
-    unsigned char bitsLixo;
-    unsigned char byte;
     unsigned int tamanhoString;
     char *textoCodificado;
-    char *codigoObtido;
-
+    unsigned char byte;
+    unsigned char bitsLixo;
 
     limparTela();
     limparVetor(
         frequencias,
         TAMANHO_VETOR);
-    inicializar(&fila);
-
+    inicializar(&filaInfoChars);
 
     printf("Digite o arquivo para compactar: ");
     gets(buff);
@@ -107,11 +104,13 @@ static void compactar()
     while((dado = fgetc(arqEntrada)) != EOF)
         frequencias[dado]++;
 
-    /*percorre vetor de frequências e insere nós na fila*/
+    /*percorre vetor de frequências e insere nós na filaInfoChars*/
     for(i = 0; i < TAMANHO_VETOR; ++i)
     {
         if (frequencias[i])
         {
+            InfoChar infoChar;
+
             infoChar.caractere = i;
             infoChar.frequencia = frequencias[i];
             infoChar.temConteudo = true;
@@ -121,34 +120,35 @@ static void compactar()
                 NULL,
                 NULL);
 
-            inserirFila(&fila, noArvore);
+            inserirFila(&filaInfoChars, noArvore);
         }
     }
 
-    /*bits que são lixo, será sobrescrito depois*/
+    /*bits que são lixo; serão sobrescritos posteriormente*/
     fputc(0, arqSaida);
 
     /*quantidade de caracteres*/
-    qtdCharCodigos = quantidade(&fila);
+    qtdCharCodigos = quantidade(&filaInfoChars);
     fwrite(&qtdCharCodigos, sizeof(short int), 1, arqSaida);
 
     /*escreve cada char e frequência dele*/
-    for(noLista = fila.inicio;
+    for(noLista = filaInfoChars.inicio;
         noLista;
         noLista = noLista->prox)
     {
+        InfoChar infoChar;
+
         infoChar = ((NoArvore*) noLista->info)->infoChar;
         fputc(infoChar.caractere, arqSaida);
         fwrite(&infoChar.frequencia, sizeof(unsigned int), 1, arqSaida);
     }
 
-    noArvore = montarArvore(&fila);
+    /*criação da árvore de huffman*/
+    noArvore = montarArvore(&filaInfoChars);
 
     /*monta-se o vetor com caracteres e códigos*/
     vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
     tamanhoString = pegarCodigos(noArvore, vetorCodigos, qtdCharCodigos);
-
-    excluirArvore(noArvore);
 
     ordenar(vetorCodigos, qtdCharCodigos);
 
@@ -162,7 +162,7 @@ static void compactar()
     /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
     for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
-        codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
+        char *codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
         if (codigoObtido)
             strcat(textoCodificado, codigoObtido);
     }
@@ -189,6 +189,7 @@ static void compactar()
     }
 
     /*limpa memória dinamicamente alocada*/
+    excluirArvore(noArvore);
     excluirCodigos(vetorCodigos, qtdCharCodigos);
     free(textoCodificado);
     free(vetorCodigos);
@@ -204,16 +205,14 @@ static void compactar()
 
 static void descompactar()
 {
+    char buff[MAX_BUFFER];
     FILE *arqEntrada, *arqSaida;
-    char buff[256];
     char bitsLixo;
     short int quantidadeInfoChars;
     unsigned int i;
-    InfoChar infoChar;
     Lista listaInfoChars;
     No* noLista;
-    NoArvore *noArvore;
-    NoArvore *raiz;
+    NoArvore *raiz, *noArvore;
     int dado;
 
     limparTela();
@@ -244,11 +243,15 @@ static void descompactar()
     /*lê cada char e sua frequência e adiciona na lista*/
     for (i = 0; i < quantidadeInfoChars; ++i)
     {
+        InfoChar infoChar;
+
         infoChar.caractere = fgetc(arqEntrada);
         fread(&infoChar.frequencia, sizeof(unsigned int), 1, arqEntrada);
         infoChar.temConteudo = true;
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
+
+    /*criação da árvore de huffman*/
     raiz = montarArvore(&listaInfoChars);
 
     /*percurso pela árvore com o texto codificado*/
@@ -265,7 +268,7 @@ static void descompactar()
             ateOnde = 8;
         ungetc(dado2, arqEntrada);
 
-        /*percorre-se cada bit do byte atual percorrendo a árvore*/
+        /*percorre-se cada bit do byte atual alterando o ponteiro noArvore*/
         for (i = 0; i < ateOnde; i++)
         {
             /*se nó atual tem conteúdo, é escrito no arquivo*/
@@ -287,7 +290,7 @@ static void descompactar()
         }
     }
 
-    /*exclui nós da árvore*/
+    /*desaloca árvore alocada dinamicamente*/
     excluirArvore(raiz);
 
     /*fecha os arquivos*/

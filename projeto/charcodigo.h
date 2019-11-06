@@ -1,7 +1,7 @@
 #ifndef CHARCODIGO
 #define CHARCODIGO
 
-#define MAX_STRING 256
+#define MAX_STRING_CODIGO 257
 
 #include "lista.h"
 

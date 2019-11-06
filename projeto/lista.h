@@ -18,8 +18,6 @@ typedef
         unsigned int quantidade;
     } Lista;
 
-/*Funções que podem ser usadas externamente, públicas*/
-
 extern void inicializar(
     Lista *lista);
 

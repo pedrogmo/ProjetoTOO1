@@ -51,7 +51,7 @@ unsigned int pegarCodigos(
     CharCodigo* vetorCodigos,
     unsigned int tamanhoCharCodigos)
 {
-    char codigo[MAX_STRING];
+    char codigo[MAX_STRING_CODIGO];
     unsigned int contagem = 0;
     codigo[0] = '\0';
     recCaminho(raiz, vetorCodigos, codigo, 0, &contagem);

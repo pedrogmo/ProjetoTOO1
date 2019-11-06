@@ -1,11 +1,6 @@
 #include "lista.h"
 #include <stdlib.h>
 
-/*
-Função auxiliar private
-Static: só pode ser usada nesse arquivo
-*/
-
 static No *novoNo(
     void *info,
     No *prox)
