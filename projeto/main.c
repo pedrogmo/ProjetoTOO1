@@ -146,9 +146,11 @@ static void compactar()
 
     /*monta-se o vetor com caracteres e códigos*/
     vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
-    tamanhoString = pegarCodigos(noArvore, vetorCodigos);
+    tamanhoString = pegarCodigos(noArvore, vetorCodigos, qtdCharCodigos);
 
     excluirArvore(noArvore);
+
+    ordenar(vetorCodigos, qtdCharCodigos);
 
     /*aloca dinamicamente string com todo o texto codificado*/
     textoCodificado = (char*)malloc(tamanhoString + 1);
@@ -160,7 +162,7 @@ static void compactar()
     /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
     for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
-        codigoObtido =  codigoDe(dado, vetorCodigos);
+        codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
         if (codigoObtido)
             strcat(textoCodificado, codigoObtido);
     }
@@ -187,7 +189,7 @@ static void compactar()
     }
 
     /*limpa memória dinamicamente alocada*/
-    excluirCodigos(&listaCodigos);
+    excluirCodigos(vetorCodigos, qtdCharCodigos);
     free(textoCodificado);
     free(vetorCodigos);
 

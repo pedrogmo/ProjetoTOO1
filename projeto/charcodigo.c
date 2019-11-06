@@ -14,32 +14,47 @@ CharCodigo *novoCharCodigo(
 }
 
 void excluirCodigos(
-    Lista *lista)
+    CharCodigo *vetor,
+    unsigned int tamanho)
 {
-    No *no;
-    CharCodigo *charCodigo;
-    for(no = lista->inicio;
-        no;
-        no = no->prox)
-    {
-        charCodigo = (CharCodigo*) no->info;
-        free(charCodigo->codigo);
-    }
+    for(; tamanho > 0; --tamanho)
+        free(vetor[tamanho-1].codigo);
+}
+
+static int comparaCharCodigos(
+    void *cc1,
+    void *cc2)
+{
+    CharCodigo *charCod1 = (CharCodigo*) cc1;
+    CharCodigo *charCod2 = (CharCodigo*) cc2;
+
+    if (charCod1->caractere < charCod2->caractere)
+        return -1;
+    else if (charCod1->caractere > charCod2->caractere)
+        return 1;
+    return 0;
+}
+
+void ordenar(
+    CharCodigo *vetor,
+    unsigned int tamanho)
+{
+    qsort(vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 }
 
 char *codigoDe(
     unsigned char caractere,
-    Lista *lista)
+    CharCodigo *vetor,
+    unsigned int tamanho)
 {
-    No *no;
-    CharCodigo *charCodigo;
-    for(no = lista->inicio;
-        no;
-        no = no->prox)
-    {
-        charCodigo = (CharCodigo*) no->info;
-        if (charCodigo->caractere == caractere)
-            return charCodigo->codigo;
-    }
-    return NULL;
+    void *busca;
+    CharCodigo charCodigo;
+    charCodigo.caractere = caractere;
+
+    busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
+
+    if (!busca)
+        return NULL;
+
+    return ((CharCodigo*) busca)->codigo;
 }
