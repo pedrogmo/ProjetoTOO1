@@ -18,10 +18,16 @@ extern CharCodigo *novoCharCodigo(
     int tamanhoString);
 
 extern void excluirCodigos(
-    Lista *lista);
+    CharCodigo *vetor,
+    unsigned int tamanho);
+
+extern void ordenar(
+    CharCodigo *vetor,
+    unsigned int tamanho);
 
 extern char *codigoDe(
     unsigned char caractere,
-    Lista *lista);
+    CharCodigo *vetor,
+    unsigned int tamanho);
 
 #endif /*CHARCODIGO*/
