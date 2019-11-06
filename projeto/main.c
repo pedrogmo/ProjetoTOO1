@@ -72,7 +72,7 @@ static void compactar()
     InfoChar infoChar;
     NoArvore* noArvore;
     No *noLista;
-    Lista listaCodigos;
+    CharCodigo *vetorCodigos;
     unsigned char bitsLixo;
     unsigned char byte;
     unsigned int tamanhoString;
@@ -85,7 +85,6 @@ static void compactar()
         frequencias,
         TAMANHO_VETOR);
     inicializar(&fila);
-    inicializar(&listaCodigos);
 
 
     printf("Digite o arquivo para compactar: ");
@@ -145,7 +144,10 @@ static void compactar()
 
     noArvore = montarArvore(&fila);
 
-    tamanhoString = pegarCodigos(noArvore, &listaCodigos);
+    /*monta-se o vetor com caracteres e códigos*/
+    vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
+    tamanhoString = pegarCodigos(noArvore, vetorCodigos);
+
     excluirArvore(noArvore);
 
     /*aloca dinamicamente string com todo o texto codificado*/
@@ -158,7 +160,7 @@ static void compactar()
     /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
     for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
-        codigoObtido =  codigoDe(dado, &listaCodigos);
+        codigoObtido =  codigoDe(dado, vetorCodigos);
         if (codigoObtido)
             strcat(textoCodificado, codigoObtido);
     }
@@ -186,7 +188,8 @@ static void compactar()
 
     /*limpa memória dinamicamente alocada*/
     excluirCodigos(&listaCodigos);
-    limparLista(&listaCodigos);
+    free(textoCodificado);
+    free(vetorCodigos);
 
     /*fecha os arquivos*/
     fclose(arqEntrada);
