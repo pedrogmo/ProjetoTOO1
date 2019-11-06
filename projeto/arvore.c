@@ -18,16 +18,17 @@ NoArvore *novaArvore(
 
 static void recCaminho(
     NoArvore* no,
-    Lista* lista,
+    CharCodigo* vetorCodigos,
     char* codigoCompleto,
     unsigned int tamanhoCodigo,
-    unsigned int* contagem)
+    unsigned int* contagem,
+    unsigned int ultimoIndice)
 {
     if (no->esquerda != NULL)
     {
         strcat(codigoCompleto, "0");
         ++tamanhoCodigo;
-        recCaminho(no->esquerda, lista, codigoCompleto, tamanhoCodigo, contagem);
+        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem);
         codigoCompleto[tamanhoCodigo - 1] = 0;
         --tamanhoCodigo;
     }
@@ -35,24 +36,25 @@ static void recCaminho(
     {
         strcat(codigoCompleto, "1");
         ++tamanhoCodigo;
-        recCaminho(no->direita , lista, codigoCompleto, tamanhoCodigo, contagem);
+        recCaminho(no->direita , vetorCodigos, codigoCompleto, tamanhoCodigo, contagem);
         codigoCompleto[tamanhoCodigo - 1] = 0;
     }
     if (no->infoChar.temConteudo)
     {
         *contagem += tamanhoCodigo * no->infoChar.frequencia;
-        inserirFim(lista, novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo));
+        vetorCodigos[] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
     }
 }
 
 unsigned int pegarCodigos(
     NoArvore* raiz,
-    Lista* lista)
+    CharCodigo* vetorCodigos,
+    unsigned int tamanhoCharCodigos)
 {
     char codigo[MAX_STRING];
     unsigned int contagem = 0;
     codigo[0] = '\0';
-    recCaminho(raiz, lista, codigo, 0, &contagem);
+    recCaminho(raiz, vetorCodigos, codigo, 0, &contagem);
     return contagem;
 }
 
