@@ -1,6 +1,5 @@
 #include "arvore.h"
 #include "lista.h"
-#include "charcodigo.h"
 #include <stdlib.h>
 #include "formabits.h"
 
@@ -28,7 +27,7 @@ static void recCaminho(
     {
         strcat(codigoCompleto, "0");
         ++tamanhoCodigo;
-        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice));
+        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice);
         codigoCompleto[tamanhoCodigo - 1] = 0;
         --tamanhoCodigo;
     }
@@ -43,7 +42,7 @@ static void recCaminho(
     {
         *contagem += tamanhoCodigo * no->infoChar.frequencia;
         vetorCodigos[*ultimoIndice] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
-	*ultimoIndice++;
+        (*ultimoIndice)++;
     }
 }
 
@@ -53,10 +52,10 @@ unsigned int pegarCodigos(
     unsigned int tamanhoCharCodigos)
 {
     char codigo[MAX_STRING_CODIGO];
-    unsigned int contagem = 0;
-    vetorCodigos = (CharCodigo*) malloc(tamanhoCharCodigos*sizeOf(CharCodigo));
+    unsigned int contagem = 0, ultimoIndice = 0;
+    vetorCodigos = (CharCodigo*) malloc(tamanhoCharCodigos * sizeof(CharCodigo));
     codigo[0] = '\0';
-    recCaminho(raiz, vetorCodigos, codigo, 0, &contagem, 0);
+    recCaminho(raiz, vetorCodigos, codigo, 0, &contagem, &ultimoIndice);
     return contagem;
 }
 

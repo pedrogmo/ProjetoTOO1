@@ -1,15 +1,15 @@
 #include <string.h>
 #include "charcodigo.h"
 
-CharCodigo *novoCharCodigo(
+CharCodigo novoCharCodigo(
     unsigned char caractere,
     char *codigoString,
-    int tamanhoString)
+    unsigned int tamanhoString)
 {
-    CharCodigo *novo = (CharCodigo*) malloc(sizeof(CharCodigo));
-    novo->caractere = caractere;
-    novo->codigo = (char*) malloc(sizeof(char) * (tamanhoString+1));
-    strcpy(novo->codigo, codigoString);
+    CharCodigo novo;
+    novo.caractere = caractere;
+    novo.codigo = (char*) malloc(sizeof(char) * (tamanhoString+1));
+    strcpy(novo.codigo, codigoString);
     return novo;
 }
 
@@ -39,7 +39,8 @@ void ordenar(
     CharCodigo *vetor,
     unsigned int tamanho)
 {
-    qsort(vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
+    int x;
+    qsort(vetor, tamanho, sizeof(CharCodigo), comparaCharCodigos);
 }
 
 char *codigoDe(
@@ -51,7 +52,7 @@ char *codigoDe(
     CharCodigo charCodigo;
 
     charCodigo.caractere = caractere;
-    busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
+    busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), comparaCharCodigos);
 
     if (!busca)
         return NULL;

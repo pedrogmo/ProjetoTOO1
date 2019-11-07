@@ -20,24 +20,22 @@
 	<stdlib.h>
 	"fila.h"
 
-1572537277 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+1573140226 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 	"lista.h"
-	"charcodigo.h"
 	<stdlib.h>
 	"formabits.h"
 
-1572450554 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
-	"bool.h"
-	"lista.h"
+1573140235 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+	"charcodigo.h"
 
 1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
 
-1572454015 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
+1573128342 source:c:\users\u18174\documents\github\projetotoo1\projeto\lista.c
 	"lista.h"
 	<stdlib.h>
 
-1572454015 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
+1573128342 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
 1571835250 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
@@ -48,7 +46,7 @@
 	"lista.h"
 	"arvore.h"
 
-1573056916 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
+1573140171 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
@@ -103,7 +101,7 @@
 	"fila.h"
 	"charcodigo.h"
 
-1573058472 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
+1573140096 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
 	"lista.h"
 
 1571839328 source:c:\users\u18174\documents\github\projetotoo1\projeto\chacodigo.c
@@ -121,7 +119,7 @@
 
 1571924538 c:\users\u18174\documents\github\projetotoo1\projeto\formabits.h
 
-1573058915 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
+1573139408 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
 

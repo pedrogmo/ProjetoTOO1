@@ -12,10 +12,10 @@ typedef
         char *codigo;
     } CharCodigo;
 
-extern CharCodigo *novoCharCodigo(
+extern CharCodigo novoCharCodigo(
     unsigned char caractere,
     char *codigoString,
-    int tamanhoString);
+    unsigned int tamanhoString);
 
 extern void excluirCodigos(
     CharCodigo *vetor,

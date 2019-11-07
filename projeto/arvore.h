@@ -1,8 +1,7 @@
 #ifndef ARVORE
 #define ARVORE
 
-#include "bool.h"
-#include "lista.h"
+#include "charcodigo.h"
 
 /*struct para guardar caractere e frequência*/
 typedef
@@ -28,8 +27,9 @@ extern NoArvore *novaArvore(
     NoArvore *dir);
 
 extern unsigned int pegarCodigos(
-    NoArvore *raiz,
-    Lista* lista);
+    NoArvore* raiz,
+    CharCodigo* vetorCodigos,
+    unsigned int tamanhoCharCodigos);
 
 extern void excluirArvore(
     NoArvore *raiz);
