@@ -22,13 +22,13 @@ static void recCaminho(
     char* codigoCompleto,
     unsigned int tamanhoCodigo,
     unsigned int* contagem,
-    unsigned int ultimoIndice)
+    unsigned int* ultimoIndice)
 {
     if (no->esquerda != NULL)
     {
         strcat(codigoCompleto, "0");
         ++tamanhoCodigo;
-        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem);
+        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice));
         codigoCompleto[tamanhoCodigo - 1] = 0;
         --tamanhoCodigo;
     }
@@ -36,13 +36,14 @@ static void recCaminho(
     {
         strcat(codigoCompleto, "1");
         ++tamanhoCodigo;
-        recCaminho(no->direita , vetorCodigos, codigoCompleto, tamanhoCodigo, contagem);
+        recCaminho(no->direita , vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice);
         codigoCompleto[tamanhoCodigo - 1] = 0;
     }
     if (no->infoChar.temConteudo)
     {
         *contagem += tamanhoCodigo * no->infoChar.frequencia;
-        vetorCodigos[] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
+        vetorCodigos[*ultimoIndice] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
+	*ultimoIndice++;
     }
 }
 
@@ -53,8 +54,9 @@ unsigned int pegarCodigos(
 {
     char codigo[MAX_STRING_CODIGO];
     unsigned int contagem = 0;
+    vetorCodigos = (CharCodigo*) malloc(tamanhoCharCodigos*sizeOf(CharCodigo));
     codigo[0] = '\0';
-    recCaminho(raiz, vetorCodigos, codigo, 0, &contagem);
+    recCaminho(raiz, vetorCodigos, codigo, 0, &contagem, 0);
     return contagem;
 }
 
