@@ -163,11 +163,11 @@ static void compactar()
     for (i = 0, dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
         char *codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
+
         if (codigoObtido)
         {
             i += strlen(codigoObtido);
-            printf("%i\n", i);
-            strcat(textoCodificado, codigoObtido);
+            strcat(textoCodificado + i, codigoObtido);
         }
     }
 
