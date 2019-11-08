@@ -148,3 +148,50 @@
 1573083765 c:\users\user\documents\github\projetotoo1\projeto\charcodigo.h
 	"lista.h"
 
+1573174430 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\arvore.c
+	"arvore.h"
+	"lista.h"
+	<stdlib.h>
+	"formabits.h"
+
+1573171943 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\arvore.h
+	"charcodigo.h"
+
+1573171943 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\charcodigo.h
+	"lista.h"
+
+1573125836 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\lista.h
+	"bool.h"
+
+1573125836 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\bool.h
+
+1573125836 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\formabits.h
+
+1573125836 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\bits.c
+	"bits.h"
+
+1573125836 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\bits.h
+	"bool.h"
+
+1573171943 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\charcodigo.c
+	<string.h>
+	"charcodigo.h"
+
+1573125836 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\fila.c
+	<stdlib.h>
+	"fila.h"
+
+1573125836 c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\fila.h
+	"lista.h"
+	"arvore.h"
+
+1573125836 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\lista.c
+	"lista.h"
+	<stdlib.h>
+
+1573173668 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\main.c
+	<stdio.h>
+	<stdlib.h>
+	"fila.h"
+	"charcodigo.h"
+

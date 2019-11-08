@@ -42,6 +42,7 @@ static void recCaminho(
     {
         *contagem += tamanhoCodigo * no->infoChar.frequencia;
         vetorCodigos[*ultimoIndice] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
+        printf("%c\n",vetorCodigos[*ultimoIndice].caractere);
         (*ultimoIndice)++;
     }
 }
@@ -53,7 +54,6 @@ unsigned int pegarCodigos(
 {
     char codigo[MAX_STRING_CODIGO];
     unsigned int contagem = 0, ultimoIndice = 0;
-    vetorCodigos = (CharCodigo*) malloc(tamanhoCharCodigos * sizeof(CharCodigo));
     codigo[0] = '\0';
     recCaminho(raiz, vetorCodigos, codigo, 0, &contagem, &ultimoIndice);
     return contagem;
