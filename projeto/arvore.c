@@ -26,23 +26,19 @@ static void recCaminho(
     if (no->esquerda != NULL)
     {
         strcat(codigoCompleto, "0");
-        ++tamanhoCodigo;
-        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice);
-        codigoCompleto[tamanhoCodigo - 1] = 0;
-        --tamanhoCodigo;
+        recCaminho(no->esquerda, vetorCodigos, codigoCompleto, ++tamanhoCodigo, contagem, ultimoIndice);
+        codigoCompleto[--tamanhoCodigo] = 0;
     }
     if (no->direita != NULL)
     {
         strcat(codigoCompleto, "1");
-        ++tamanhoCodigo;
-        recCaminho(no->direita , vetorCodigos, codigoCompleto, tamanhoCodigo, contagem, ultimoIndice);
-        codigoCompleto[tamanhoCodigo - 1] = 0;
+        recCaminho(no->direita , vetorCodigos, codigoCompleto, ++tamanhoCodigo, contagem, ultimoIndice);
+        codigoCompleto[--tamanhoCodigo] = 0;
     }
     if (no->infoChar.temConteudo)
     {
         *contagem += tamanhoCodigo * no->infoChar.frequencia;
         vetorCodigos[*ultimoIndice] = novoCharCodigo(no->infoChar.caractere, codigoCompleto, tamanhoCodigo);
-        printf("%c\n",vetorCodigos[*ultimoIndice].caractere);
         (*ultimoIndice)++;
     }
 }

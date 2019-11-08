@@ -39,8 +39,7 @@ void ordenar(
     CharCodigo *vetor,
     unsigned int tamanho)
 {
-    int x;
-    qsort(vetor, tamanho, sizeof(CharCodigo), comparaCharCodigos);
+    qsort(vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 }
 
 char *codigoDe(
@@ -52,7 +51,7 @@ char *codigoDe(
     CharCodigo charCodigo;
 
     charCodigo.caractere = caractere;
-    busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), comparaCharCodigos);
+    busca = bsearch(&charCodigo, vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 
     if (!busca)
         return NULL;

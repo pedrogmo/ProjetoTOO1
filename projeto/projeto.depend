@@ -1,10 +1,12 @@
 # depslib dependency file v1.0
-1571789422 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
+1573178953 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
-
-1572707262 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
-	"bool.h"
 	"lista.h"
+	<stdlib.h>
+	"formabits.h"
+
+1573177210 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
+	"charcodigo.h"
 
 1571509188 c:\users\user\documents\github\projetotoo1\projeto\bool.h
 
@@ -15,10 +17,11 @@
 1573082595 c:\users\user\documents\github\projetotoo1\projeto\lista.h
 	"bool.h"
 
-1571791681 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
+1573179851 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
+	"charcodigo.h"
 
 1573140226 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
@@ -141,11 +144,11 @@
 1572707262 c:\users\user\documents\github\projetotoo1\projeto\bits.h
 	"bool.h"
 
-1573082624 source:c:\users\user\documents\github\projetotoo1\projeto\charcodigo.c
+1573177472 source:c:\users\user\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
 
-1573083765 c:\users\user\documents\github\projetotoo1\projeto\charcodigo.h
+1573177210 c:\users\user\documents\github\projetotoo1\projeto\charcodigo.h
 	"lista.h"
 
 1573174430 source:c:\users\gusta\onedrive\documentos\github\projetotoo1\projeto\arvore.c
@@ -194,4 +197,6 @@
 	<stdlib.h>
 	"fila.h"
 	"charcodigo.h"
+
+1572047733 c:\users\user\documents\github\projetotoo1\projeto\formabits.h
 

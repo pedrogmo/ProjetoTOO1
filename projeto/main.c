@@ -149,8 +149,6 @@ static void compactar()
     /*monta-se o vetor com caracteres e códigos*/
     vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
     tamanhoString = pegarCodigos(noArvore, vetorCodigos, qtdCharCodigos);
-    for (i = 0; i < qtdCharCodigos; i++)
-        printf("%c\n",vetorCodigos[i].caractere);
 
     ordenar(vetorCodigos, qtdCharCodigos);
 
@@ -170,7 +168,7 @@ static void compactar()
     }
 
     /*percorre a string; gera e escreve os bytes correspondentes*/
-    for(i=0; i < tamanhoString; ++i)
+    for(byte = 0, i = 0; i < tamanhoString; ++i)
     {
         if (i != 0 && i % 8 == 0)
         {
