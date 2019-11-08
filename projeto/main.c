@@ -65,18 +65,18 @@ static void compactar()
 {
     uint32 frequencias[TAMANHO_VETOR];
     char buff[MAX_BUFFER];
-    FILE *arqEntrada, *arqSaida;
+    FILE *arqEntrada = NULL, *arqSaida = NULL;
     Lista filaInfoChars;
-    int dado;
-    uint32 i;
-    NoArvore* noArvore;
-    short int qtdCharCodigos;
-    No *noLista;
-    CharCodigo *vetorCodigos;
-    uint32 tamanhoString;
-    char *textoCodificado;
-    unsigned char byte;
-    unsigned char bitsLixo;
+    int dado = 0;
+    uint32 i = 0;
+    NoArvore* noArvore = NULL;
+    short int qtdCharCodigos = 0;
+    No *noLista = NULL;
+    CharCodigo *vetorCodigos = NULL;
+    uint32 tamanhoString = 0;
+    char *textoCodificado = NULL;
+    unsigned char byte = 0;
+    unsigned char bitsLixo = 0;
 
     limparTela();
     limparVetor(
@@ -150,14 +150,8 @@ static void compactar()
     vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
     tamanhoString = pegarCodigos(noArvore, vetorCodigos);
 
+    /*ordena vetor de charcodigos pelo caractere*/
     ordenar(vetorCodigos, qtdCharCodigos);
-
-    for(i = 0; i < qtdCharCodigos; ++i)
-    {
-        CharCodigo charCodigo = vetorCodigos[i];
-        printf("%c : %s\n", charCodigo.caractere, charCodigo.codigo);
-    }
-
 
     /*aloca dinamicamente string com todo o texto codificado*/
     textoCodificado = (char*)malloc(tamanhoString + 1);
@@ -217,14 +211,14 @@ static void compactar()
 static void descompactar()
 {
     char buff[MAX_BUFFER];
-    FILE *arqEntrada, *arqSaida;
-    char bitsLixo;
-    short int quantidadeInfoChars;
-    unsigned int i;
+    FILE *arqEntrada = NULL, *arqSaida = NULL;
+    char bitsLixo = 0;
+    short int quantidadeInfoChars = 0;
+    unsigned int i = 0;
     Lista listaInfoChars;
-    No* noLista;
-    NoArvore *raiz, *noArvore;
-    int dado;
+    No* noLista = NULL;
+    NoArvore *raiz = NULL, *noArvore = NULL;
+    int dado = 0;
 
     limparTela();
     inicializar(&listaInfoChars);
