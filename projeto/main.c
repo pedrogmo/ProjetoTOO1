@@ -152,6 +152,13 @@ static void compactar()
 
     ordenar(vetorCodigos, qtdCharCodigos);
 
+    for(i = 0; i < qtdCharCodigos; ++i)
+    {
+        CharCodigo charCodigo = vetorCodigos[i];
+        printf("%c : %s\n", charCodigo.caractere, charCodigo.codigo);
+    }
+
+
     /*aloca dinamicamente string com todo o texto codificado*/
     textoCodificado = (char*)malloc(tamanhoString + 1);
     textoCodificado[0] = 0;
