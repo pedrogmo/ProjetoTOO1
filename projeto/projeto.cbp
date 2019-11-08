@@ -39,7 +39,6 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="bits.h" />
-		<Unit filename="bool.h" />
 		<Unit filename="charcodigo.c">
 			<Option compilerVar="CC" />
 		</Unit>
@@ -55,6 +54,7 @@
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="tipos.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

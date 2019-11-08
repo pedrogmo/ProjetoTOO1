@@ -5,10 +5,10 @@
 #include "arvore.h"
 
 extern void inserirFila(
-    Lista *fila,
-    NoArvore *noArvore);
+    Lista* fila,
+    NoArvore* noArvore);
 
-extern NoArvore *removerFila(
-    Lista *fila);
+extern NoArvore* removerFila(
+    Lista* fila);
 
 #endif /*FILA*/

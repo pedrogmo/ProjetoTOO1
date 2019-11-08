@@ -2,8 +2,8 @@
 #include "charcodigo.h"
 
 CharCodigo novoCharCodigo(
-    unsigned char caractere,
-    char *codigoString,
+    uint8 caractere,
+    char* codigoString,
     uint32 tamanhoString)
 {
     CharCodigo novo;
@@ -14,8 +14,8 @@ CharCodigo novoCharCodigo(
 }
 
 void excluirCodigos(
-    CharCodigo *vetor,
-    unsigned int tamanho)
+    CharCodigo* vetor,
+    uint32 tamanho)
 {
     for(; tamanho > 0; --tamanho)
         free(vetor[tamanho-1].codigo);
@@ -36,18 +36,18 @@ static int comparaCharCodigos(
 }
 
 void ordenar(
-    CharCodigo *vetor,
+    CharCodigo* vetor,
     uint32 tamanho)
 {
     qsort(vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 }
 
-char *codigoDe(
-    unsigned char caractere,
-    CharCodigo *vetor,
+char* codigoDe(
+    uint8 caractere,
+    CharCodigo* vetor,
     uint32 tamanho)
 {
-    void *busca;
+    void* busca;
     CharCodigo charCodigo;
 
     charCodigo.caractere = caractere;

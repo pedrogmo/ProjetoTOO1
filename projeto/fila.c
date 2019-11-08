@@ -2,8 +2,8 @@
 #include "fila.h"
 
 void inserirFila(
-    Lista *fila,
-    NoArvore *noArvore)
+    Lista* fila,
+    NoArvore* noArvore)
 {
     int pos = 0;
 
@@ -18,10 +18,10 @@ void inserirFila(
     inserirFim(fila, noArvore);
 }
 
-NoArvore *removerFila(
-    Lista *fila)
+NoArvore* removerFila(
+    Lista* fila)
 {
-    NoArvore *primeiroValor = (NoArvore*) dadoInicio(fila);
+    NoArvore* primeiroValor = (NoArvore*) dadoInicio(fila);
     fila->inicio = fila->inicio->prox;
     --fila->quantidade;
     if (!fila->inicio)

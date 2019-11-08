@@ -3,12 +3,12 @@
 #include <stdlib.h>
 #include "bits.h"
 
-NoArvore *novaArvore(
+NoArvore* novaArvore(
     InfoChar info,
-    NoArvore *esq,
-    NoArvore *dir)
+    NoArvore* esq,
+    NoArvore* dir)
 {
-    NoArvore *nova = (NoArvore*) malloc(sizeof(NoArvore));
+    NoArvore* nova = (NoArvore*) malloc(sizeof(NoArvore));
     nova->infoChar = info;
     nova->esquerda = esq;
     nova->direita = dir;
@@ -55,7 +55,7 @@ uint32 pegarCodigos(
 }
 
 void excluirArvore(
-    NoArvore *raiz)
+    NoArvore* raiz)
 {
     if (raiz)
     {
@@ -64,13 +64,13 @@ void excluirArvore(
         free(raiz);
     }
 }
-NoArvore *montarArvore(
+NoArvore* montarArvore(
     Lista* fila)
 {
     NoArvore *noArvore, *esq, *dir;
     InfoChar infoChar;
-    No *no;
-    CharCodigo *charCodigo;
+    No* no;
+    CharCodigo* charCodigo;
 
     while(quantidade(fila) >= 2)
     {

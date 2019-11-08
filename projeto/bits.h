@@ -3,11 +3,11 @@
 #include "tipos.h"
 
 extern void setBit(
-    unsigned char qualBit,
-    char *byte);
+    uint8 qualBit,
+    uint8* byte);
 
 extern bool isUm(
-    unsigned char qualBit,
-    char byte);
+    uint8 qualBit,
+    uint8 byte);
 
 #endif /*BITS*/

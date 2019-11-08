@@ -7,7 +7,7 @@
 typedef
     struct
     {
-        unsigned char caractere;
+        uint8 caractere;
         uint32 frequencia;
         bool temConteudo;
     } InfoChar;
@@ -17,11 +17,11 @@ typedef
     struct NoArvore
     {
         InfoChar infoChar;
-        struct NoArvore *esquerda;
-        struct NoArvore *direita;
+        struct NoArvore* esquerda;
+        struct NoArvore* direita;
     } NoArvore;
 
-extern NoArvore *novaArvore(
+extern NoArvore* novaArvore(
     InfoChar info,
     NoArvore *esq,
     NoArvore *dir);
@@ -31,9 +31,9 @@ extern uint32 pegarCodigos(
     CharCodigo* vetorCodigos);
 
 extern void excluirArvore(
-    NoArvore *raiz);
+    NoArvore* raiz);
 
-extern NoArvore *montarArvore(
+extern NoArvore* montarArvore(
     Lista* fila);
 
 #endif /*ARVORE*/

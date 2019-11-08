@@ -1,18 +1,18 @@
 #include "lista.h"
 #include <stdlib.h>
 
-static No *novoNo(
-    void *info,
-    No *prox)
+static No* novoNo(
+    void* info,
+    No* prox)
 {
-    No *ptrNovo = (No*) malloc(sizeof(No));
+    No* ptrNovo = (No*) malloc(sizeof(No));
     ptrNovo->info = info;
     ptrNovo->prox = prox;
     return ptrNovo;
 }
 
 void inicializar(
-    Lista *lista)
+    Lista* lista)
 {
     lista->inicio = NULL;
     lista->fim = NULL;
@@ -20,20 +20,20 @@ void inicializar(
 }
 
 int quantidade(
-    Lista *lista)
+    Lista* lista)
 {
     return lista->quantidade;
 }
 
 bool vazia(
-    Lista *lista)
+    Lista* lista)
 {
     return !lista->inicio;
 }
 
 void inserirInicio(
-    Lista *lista,
-    void *info)
+    Lista* lista,
+    void* info)
 {
     lista->inicio = novoNo(info, lista->inicio);
     if (!lista->fim)
@@ -42,10 +42,10 @@ void inserirInicio(
 }
 
 void inserirFim(
-    Lista *lista,
-    void *info)
+    Lista* lista,
+    void* info)
 {
-    No *novo = novoNo(info, NULL);
+    No* novo = novoNo(info, NULL);
 
     if (lista->fim)
     {
@@ -62,15 +62,15 @@ void inserirFim(
 }
 
 void inserir(
-    Lista *lista,
-    void *info,
-    unsigned int pos)
+    Lista* lista,
+    void* info,
+    uint32 pos)
 {
     if (pos == 0)
         inserirInicio(lista, info);
     else
     {
-        No *anterior = lista->inicio;
+        No* anterior = lista->inicio;
 
         for (; pos > 1; --pos)
         {
@@ -86,23 +86,23 @@ void inserir(
     }
 }
 
-void *dadoInicio(
-    Lista *lista)
+void* dadoInicio(
+    Lista* lista)
 {
     return lista->inicio->info;
 }
 
-void *dadoFim(
-    Lista *lista)
+void* dadoFim(
+    Lista* lista)
 {
     return lista->fim->info;
 }
 
 void* dadoEm(
-    Lista *lista,
-    unsigned int pos)
+    Lista* lista,
+    uint32 pos)
 {
-    No *temp = lista->inicio;
+    No* temp = lista->inicio;
 
     for(; pos > 0 && temp;
         --pos)
@@ -113,9 +113,9 @@ void* dadoEm(
 }
 
 void excluirInicio(
-    Lista *lista)
+    Lista* lista)
 {
-    No *primeiro = lista->inicio;
+    No* primeiro = lista->inicio;
 
     if (primeiro)
     {
@@ -130,9 +130,9 @@ void excluirInicio(
 }
 
 void excluirFim(
-    Lista *lista)
+    Lista* lista)
 {
-    No *penultimo = lista->inicio;
+    No* penultimo = lista->inicio;
 
     if (lista->inicio)
     {
@@ -159,15 +159,15 @@ void excluirFim(
 }
 
 void excluir(
-    Lista *lista,
-    unsigned int pos)
+    Lista* lista,
+    uint32 pos)
 {
     if (pos == 0)
         excluirInicio(lista);
     else
     {
-        No *anterior = lista->inicio;
-        No *temp;
+        No* anterior = lista->inicio;
+        No* temp;
 
         for (; pos > 1; --pos)
         {
@@ -188,7 +188,7 @@ void excluir(
 }
 
 void limparLista(
-    Lista *lista)
+    Lista* lista)
 {
     while(lista->inicio)
         excluirInicio(lista);

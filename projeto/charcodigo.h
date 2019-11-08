@@ -9,25 +9,25 @@ typedef
     struct
     {
         unsigned char caractere;
-        char *codigo;
+        char* codigo;
     } CharCodigo;
 
 extern CharCodigo novoCharCodigo(
-    unsigned char caractere,
-    char *codigoString,
+    uint8 caractere,
+    char* codigoString,
     uint32 tamanhoString);
 
 extern void excluirCodigos(
-    CharCodigo *vetor,
+    CharCodigo* vetor,
     uint32 tamanho);
 
 extern void ordenar(
-    CharCodigo *vetor,
+    CharCodigo* vetor,
     uint32 tamanho);
 
-extern char *codigoDe(
-    unsigned char caractere,
-    CharCodigo *vetor,
+extern char* codigoDe(
+    uint8 caractere,
+    CharCodigo* vetor,
     uint32 tamanho);
 
 #endif /*CHARCODIGO*/

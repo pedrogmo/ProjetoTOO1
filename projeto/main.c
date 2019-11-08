@@ -22,7 +22,7 @@ Algoritmo de Huffman:
 */
 
 static void limparVetor(
-    int *vet,
+    uint32 *vet,
     unsigned int tamanho)
 {
     for(; tamanho > 0; --tamanho)
@@ -70,13 +70,13 @@ static void compactar()
     int dado = 0;
     uint32 i = 0;
     NoArvore* noArvore = NULL;
-    short int qtdCharCodigos = 0;
-    No *noLista = NULL;
-    CharCodigo *vetorCodigos = NULL;
+    uint16 qtdCharCodigos = 0;
+    No* noLista = NULL;
+    CharCodigo* vetorCodigos = NULL;
     uint32 tamanhoString = 0;
-    char *textoCodificado = NULL;
-    unsigned char byte = 0;
-    unsigned char bitsLixo = 0;
+    char* textoCodificado = NULL;
+    uint8 byte = 0;
+    uint8 bitsLixo = 0;
 
     limparTela();
     limparVetor(
@@ -129,7 +129,7 @@ static void compactar()
 
     /*quantidade de caracteres*/
     qtdCharCodigos = quantidade(&filaInfoChars);
-    fwrite(&qtdCharCodigos, sizeof(short int), 1, arqSaida);
+    fwrite(&qtdCharCodigos, sizeof(uint16), 1, arqSaida);
 
     /*escreve cada char e frequência dele*/
     for(noLista = filaInfoChars.inicio;
@@ -140,7 +140,7 @@ static void compactar()
 
         infoChar = ((NoArvore*) noLista->info)->infoChar;
         fputc(infoChar.caractere, arqSaida);
-        fwrite(&infoChar.frequencia, sizeof(unsigned int), 1, arqSaida);
+        fwrite(&infoChar.frequencia, sizeof(uint32), 1, arqSaida);
     }
 
     /*criação da árvore de huffman*/
@@ -154,7 +154,7 @@ static void compactar()
     ordenar(vetorCodigos, qtdCharCodigos);
 
     /*aloca dinamicamente string com todo o texto codificado*/
-    textoCodificado = (char*)malloc(tamanhoString + 1);
+    textoCodificado = (char*) malloc(sizeof(char) * (tamanhoString + 1));
     textoCodificado[0] = 0;
 
     /*reinicia arquivo para segunda leitura*/
@@ -163,7 +163,7 @@ static void compactar()
     /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
     for (i = 0, dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
-        char *codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
+        char* codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
 
         if (codigoObtido)
         {
@@ -175,11 +175,13 @@ static void compactar()
     /*percorre a string; gera e escreve os bytes correspondentes*/
     for(byte = 0, i = 0; i < tamanhoString; ++i)
     {
+        /*se completou um byte, escreve*/
         if (i != 0 && i % 8 == 0)
         {
             fputc(byte, arqSaida);
             byte = 0;
         }
+
         if (textoCodificado[i] == '1')
             setBit(i % 8, &byte);
     }
@@ -213,8 +215,8 @@ static void descompactar()
     char buff[MAX_BUFFER];
     FILE *arqEntrada = NULL, *arqSaida = NULL;
     char bitsLixo = 0;
-    short int quantidadeInfoChars = 0;
-    unsigned int i = 0;
+    uint16 quantidadeInfoChars = 0;
+    uint32 i = 0;
     Lista listaInfoChars;
     No* noLista = NULL;
     NoArvore *raiz = NULL, *noArvore = NULL;
@@ -243,7 +245,7 @@ static void descompactar()
     bitsLixo = fgetc(arqEntrada);
 
     /*lê a quantidade de caracteres presentes e codificados*/
-    fread(&quantidadeInfoChars, sizeof(short int), 1, arqEntrada);
+    fread(&quantidadeInfoChars, sizeof(uint16), 1, arqEntrada);
 
     /*lê cada char e sua frequência e adiciona na lista*/
     for (i = 0; i < quantidadeInfoChars; ++i)
@@ -251,7 +253,7 @@ static void descompactar()
         InfoChar infoChar;
 
         infoChar.caractere = fgetc(arqEntrada);
-        fread(&infoChar.frequencia, sizeof(unsigned int), 1, arqEntrada);
+        fread(&infoChar.frequencia, sizeof(uint32), 1, arqEntrada);
         infoChar.temConteudo = true;
         inserirFim(&listaInfoChars, novaArvore(infoChar, NULL, NULL));
     }
@@ -264,7 +266,7 @@ static void descompactar()
     for (dado = fgetc(arqEntrada); dado != EOF; dado = fgetc(arqEntrada))
     {
         /*determina-se a quantidade de bits que deve ser considerada do byte atual*/
-        unsigned char ateOnde;
+        uint8 ateOnde;
         int dado2 = fgetc(arqEntrada);
 
         if (dado2 == EOF)
@@ -316,7 +318,7 @@ int main()
 
     for(;;)
     {
-        char opcao = 0;
+        uint8 opcao = 0;
 
         puts("1- Compactar");
         puts("2- Descompactar");
@@ -326,7 +328,7 @@ int main()
         scanf("%i", &opcao);
         fflush(stdin);
 
-        if(opcao <= 0 || opcao > 2)
+        if(opcao == 0 || opcao > 2)
             break;
 
         (*funcoes[opcao-1]) ();

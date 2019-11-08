@@ -1,19 +1,19 @@
 #include "bits.h"
 
 void setBit(
-    unsigned char qualBit,
-    char *byte)
+    uint8 qualBit,
+    uint8* byte)
 {
-    unsigned char bitDesejado = 0b10000000;
+    uint8 bitDesejado = 0b10000000;
     bitDesejado >>= qualBit;
     *byte |= bitDesejado;
 }
 
 bool isUm(
-    unsigned char qualBit,
-    char byte)
+    uint8 qualBit,
+    uint8 byte)
 {
-    unsigned char byteComparacao = 0b10000000;
+    uint8 byteComparacao = 0b10000000;
     byteComparacao >>= qualBit;
     return byteComparacao & byte;
 }
