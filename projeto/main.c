@@ -166,8 +166,8 @@ static void compactar()
 
         if (codigoObtido)
         {
-            i += strlen(codigoObtido);
             strcat(textoCodificado + i, codigoObtido);
+            i += strlen(codigoObtido);
         }
     }
 
