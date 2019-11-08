@@ -1,7 +1,7 @@
 #ifndef LISTA
 #define LISTA
 
-#include "bool.h"
+#include "tipos.h"
 
 typedef
     struct No

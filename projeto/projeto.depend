@@ -23,13 +23,13 @@
 	"fila.h"
 	"charcodigo.h"
 
-1573140226 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
+1573216495 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
 	"lista.h"
 	<stdlib.h>
-	"formabits.h"
+	"bits.h"
 
-1573140235 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
+1573216384 c:\users\u18174\documents\github\projetotoo1\projeto\arvore.h
 	"charcodigo.h"
 
 1571655297 c:\users\u18174\documents\github\projetotoo1\projeto\bool.h
@@ -38,8 +38,8 @@
 	"lista.h"
 	<stdlib.h>
 
-1573128342 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
-	"bool.h"
+1573216398 c:\users\u18174\documents\github\projetotoo1\projeto\lista.h
+	"tipos.h"
 
 1571835250 source:c:\users\u18174\documents\github\projetotoo1\projeto\fila.c
 	<stdlib.h>
@@ -49,7 +49,7 @@
 	"lista.h"
 	"arvore.h"
 
-1573140171 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
+1573216773 source:c:\users\u18174\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
@@ -104,7 +104,7 @@
 	"fila.h"
 	"charcodigo.h"
 
-1573140096 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
+1573216410 c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.h
 	"lista.h"
 
 1571839328 source:c:\users\u18174\documents\github\projetotoo1\projeto\chacodigo.c
@@ -122,7 +122,7 @@
 
 1571924538 c:\users\u18174\documents\github\projetotoo1\projeto\formabits.h
 
-1573139408 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
+1573216429 source:c:\users\u18174\documents\github\projetotoo1\projeto\charcodigo.c
 	<string.h>
 	"charcodigo.h"
 
@@ -135,8 +135,8 @@
 1572450554 source:c:\users\u18174\documents\github\projetotoo1\projeto\bits.c
 	"bits.h"
 
-1572447439 c:\users\u18174\documents\github\projetotoo1\projeto\bits.h
-	"bool.h"
+1573216500 c:\users\u18174\documents\github\projetotoo1\projeto\bits.h
+	"tipos.h"
 
 1572707262 source:c:\users\user\documents\github\projetotoo1\projeto\bits.c
 	"bits.h"
@@ -199,4 +199,6 @@
 	"charcodigo.h"
 
 1572047733 c:\users\user\documents\github\projetotoo1\projeto\formabits.h
+
+1573216642 c:\users\u18174\documents\github\projetotoo1\projeto\tipos.h
 

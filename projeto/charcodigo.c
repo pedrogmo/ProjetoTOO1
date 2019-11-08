@@ -4,7 +4,7 @@
 CharCodigo novoCharCodigo(
     unsigned char caractere,
     char *codigoString,
-    unsigned int tamanhoString)
+    uint32 tamanhoString)
 {
     CharCodigo novo;
     novo.caractere = caractere;
@@ -37,7 +37,7 @@ static int comparaCharCodigos(
 
 void ordenar(
     CharCodigo *vetor,
-    unsigned int tamanho)
+    uint32 tamanho)
 {
     qsort(vetor, tamanho, sizeof(CharCodigo), &comparaCharCodigos);
 }
@@ -45,7 +45,7 @@ void ordenar(
 char *codigoDe(
     unsigned char caractere,
     CharCodigo *vetor,
-    unsigned int tamanho)
+    uint32 tamanho)
 {
     void *busca;
     CharCodigo charCodigo;

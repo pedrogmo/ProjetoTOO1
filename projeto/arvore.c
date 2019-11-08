@@ -1,7 +1,7 @@
 #include "arvore.h"
 #include "lista.h"
 #include <stdlib.h>
-#include "formabits.h"
+#include "bits.h"
 
 NoArvore *novaArvore(
     InfoChar info,
@@ -19,9 +19,9 @@ static void recCaminho(
     NoArvore* no,
     CharCodigo* vetorCodigos,
     char* codigoCompleto,
-    unsigned int tamanhoCodigo,
-    unsigned int* contagem,
-    unsigned int* ultimoIndice)
+    uint32 tamanhoCodigo,
+    uint32* contagem,
+    uint32* ultimoIndice)
 {
     if (no->esquerda != NULL)
     {
@@ -43,13 +43,12 @@ static void recCaminho(
     }
 }
 
-unsigned int pegarCodigos(
+uint32 pegarCodigos(
     NoArvore* raiz,
-    CharCodigo* vetorCodigos,
-    unsigned int tamanhoCharCodigos)
+    CharCodigo* vetorCodigos)
 {
     char codigo[MAX_STRING_CODIGO];
-    unsigned int contagem = 0, ultimoIndice = 0;
+    uint32 contagem = 0, ultimoIndice = 0;
     codigo[0] = '\0';
     recCaminho(raiz, vetorCodigos, codigo, 0, &contagem, &ultimoIndice);
     return contagem;

@@ -63,17 +63,17 @@ static bool arquivoInvalido(
 
 static void compactar()
 {
-    unsigned int frequencias[TAMANHO_VETOR];
+    uint32 frequencias[TAMANHO_VETOR];
     char buff[MAX_BUFFER];
     FILE *arqEntrada, *arqSaida;
     Lista filaInfoChars;
     int dado;
-    unsigned int i;
+    uint32 i;
     NoArvore* noArvore;
     short int qtdCharCodigos;
     No *noLista;
     CharCodigo *vetorCodigos;
-    unsigned int tamanhoString;
+    uint32 tamanhoString;
     char *textoCodificado;
     unsigned char byte;
     unsigned char bitsLixo;
@@ -148,7 +148,7 @@ static void compactar()
 
     /*monta-se o vetor com caracteres e códigos*/
     vetorCodigos = (CharCodigo*) malloc(qtdCharCodigos * sizeof(CharCodigo));
-    tamanhoString = pegarCodigos(noArvore, vetorCodigos, qtdCharCodigos);
+    tamanhoString = pegarCodigos(noArvore, vetorCodigos);
 
     ordenar(vetorCodigos, qtdCharCodigos);
 
@@ -160,11 +160,15 @@ static void compactar()
     rewind(arqEntrada);
 
     /*lê cada caractere do arquivo e concatena seu código no textoCodificado*/
-    for (dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
+    for (i = 0, dado = getc(arqEntrada); dado != EOF; dado = getc(arqEntrada))
     {
         char *codigoObtido =  codigoDe(dado, vetorCodigos, qtdCharCodigos);
         if (codigoObtido)
+        {
+            i += strlen(codigoObtido);
+            printf("%i\n", i);
             strcat(textoCodificado, codigoObtido);
+        }
     }
 
     /*percorre a string; gera e escreve os bytes correspondentes*/

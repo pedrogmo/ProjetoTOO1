@@ -15,19 +15,19 @@ typedef
 extern CharCodigo novoCharCodigo(
     unsigned char caractere,
     char *codigoString,
-    unsigned int tamanhoString);
+    uint32 tamanhoString);
 
 extern void excluirCodigos(
     CharCodigo *vetor,
-    unsigned int tamanho);
+    uint32 tamanho);
 
 extern void ordenar(
     CharCodigo *vetor,
-    unsigned int tamanho);
+    uint32 tamanho);
 
 extern char *codigoDe(
     unsigned char caractere,
     CharCodigo *vetor,
-    unsigned int tamanho);
+    uint32 tamanho);
 
 #endif /*CHARCODIGO*/

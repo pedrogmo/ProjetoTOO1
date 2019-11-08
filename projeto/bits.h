@@ -1,6 +1,6 @@
 #ifndef BITS
 #define BITS
-#include "bool.h"
+#include "tipos.h"
 
 extern void setBit(
     unsigned char qualBit,
