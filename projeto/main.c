@@ -35,12 +35,12 @@ static void limparTela()
 }
 
 static bool arquivoInvalido(
-    FILE *arquivo,
+    FILE* arquivo,
     bool podeVazio)
 {
     if (!arquivo)
     {
-        printf("Nao foi possivel abrir arquivo");
+        printf("Nao foi possivel abrir arquivo.");
         getchar();
         return true;
     }
@@ -50,7 +50,7 @@ static bool arquivoInvalido(
         int dado = fgetc(arquivo);
         if (dado == EOF)
         {
-            printf("O arquivo esta vazio");
+            printf("O arquivo esta vazio.");
             getchar();
             return true;
         }
@@ -206,7 +206,7 @@ static void compactar()
     fclose(arqSaida);
 
     /*trava a execução*/
-    printf("\nArquivo compactado");
+    printf("\nArquivo compactado.");
     getchar();
 }
 
@@ -305,7 +305,7 @@ static void descompactar()
     fclose(arqSaida);
 
     /*trava a execução*/
-    printf("\nArquivo descompactado");
+    printf("\nArquivo descompactado.");
     getchar();
 }
 
