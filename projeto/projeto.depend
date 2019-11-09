@@ -1,8 +1,7 @@
 # depslib dependency file v1.0
-1573250989 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
-	"arvore.h"
-	"lista.h"
+1573262468 source:c:\users\user\documents\github\projetotoo1\projeto\arvore.c
 	<stdlib.h>
+	"arvore.h"
 	"bits.h"
 
 1573250878 c:\users\user\documents\github\projetotoo1\projeto\arvore.h
@@ -10,18 +9,17 @@
 
 1571509188 c:\users\user\documents\github\projetotoo1\projeto\bool.h
 
-1573251210 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
-	"lista.h"
+1573262490 source:c:\users\user\documents\github\projetotoo1\projeto\lista.c
 	<stdlib.h>
+	"lista.h"
 
 1573251225 c:\users\user\documents\github\projetotoo1\projeto\lista.h
 	"tipos.h"
 
-1573251574 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
+1573262411 source:c:\users\user\documents\github\projetotoo1\projeto\main.c
 	<stdio.h>
 	<stdlib.h>
 	"fila.h"
-	"charcodigo.h"
 
 1573216495 source:c:\users\u18174\documents\github\projetotoo1\projeto\arvore.c
 	"arvore.h"
