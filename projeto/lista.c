@@ -1,5 +1,5 @@
-#include "lista.h"
 #include <stdlib.h>
+#include "lista.h"
 
 static No* novoNo(
     void* info,

@@ -1,6 +1,5 @@
-#include "arvore.h"
-#include "lista.h"
 #include <stdlib.h>
+#include "arvore.h"
 #include "bits.h"
 
 NoArvore* novaArvore(

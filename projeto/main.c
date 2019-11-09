@@ -2,7 +2,6 @@
 #include <stdlib.h>
 
 #include "fila.h"
-#include "charcodigo.h"
 
 #define TAMANHO_VETOR 256
 #define MAX_BUFFER 1024
@@ -266,7 +265,7 @@ static void descompactar()
     for (dado = fgetc(arqEntrada); dado != EOF; dado = fgetc(arqEntrada))
     {
         /*determina-se a quantidade de bits que deve ser considerada do byte atual*/
-        uint8 ateOnde;
+        uint8 ateOnde = 0;
         int dado2 = fgetc(arqEntrada);
 
         if (dado2 == EOF)
